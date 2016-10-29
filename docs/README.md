@@ -1,4 +1,4 @@
-# FresherNote
+# Knack
 
 [Heroku link][heroku]
 
@@ -31,10 +31,10 @@ sufficient CSS styling:
 * [Sample State][sample-state]
 
 [wireframes]: https://github.com/louisscruz/knack/tree/master/docs/wireframes
-[components]: https://github.com/louisscruz/knack/blob/master/docs/component-hierarchy.md
-[sample-state]: https://github.com/louisscruz/knack/blob/master/docs/sample-state.md
-[api-endpoints]: https://github.com/louisscruz/knack/blob/master/docs/api-endpoints.md
-[schema]: https://github.com/louisscruz/knack/blob/master/docs/schema.md
+[components]: component-hierarchy.md
+[sample-state]: sample-state.md
+[api-endpoints]: api-endpoints.md
+[schema]: schema.md
 
 ## Implementation Timeline
 
