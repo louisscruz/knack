@@ -30,11 +30,11 @@ sufficient CSS styling:
 * [DB schema][schema]
 * [Sample State][sample-state]
 
-[wireframes]: docs/wireframes
-[components]: docs/component-hierarchy.md
-[sample-state]: docs/sample-state.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
+[wireframes]: https://github.com/louisscruz/knack/tree/master/docs/wireframes
+[components]: https://github.com/louisscruz/knack/blob/master/docs/component-hierarchy.md
+[sample-state]: https://github.com/louisscruz/knack/blob/master/docs/sample-state.md
+[api-endpoints]: https://github.com/louisscruz/knack/blob/master/docs/api-endpoints.md
+[schema]: https://github.com/louisscruz/knack/blob/master/docs/schema.md
 
 ## Implementation Timeline
 
