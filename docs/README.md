@@ -4,7 +4,7 @@
 
 [Trello link][trello]
 
-[heroku]: https://knacklive.herokuapp.com/
+[heroku]: https://www.knack.live/
 [trello]: https://trello.com/b/W5JOYM88/knack
 
 ## Minimum Viable Product

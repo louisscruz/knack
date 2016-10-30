@@ -1,0 +1,37 @@
+.splash {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  header {
+    position: fixed;
+    width: 100%;
+  }
+  main {
+    flex: 1;
+    background: pink;
+    background: -webkit-linear-gradient(left top, pink, green);
+    background: -o-linear-gradient(bottom right, pink, green);
+    background: -moz-linear-gradient(bottom right, pink, green);
+    background: linear-gradient(to bottom right, pink, green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    section {
+      margin: 0 auto;
+      margin-top: 80px;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.auth {
+  max-width: 500px;
+  padding: 8px 16px;
+  text-align: center;
+  .fields {
+    padding-top: 0 !important;
+  }
+  .card-title {
+    padding-bottom: 0 !important;
+  }
+}
