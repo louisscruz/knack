@@ -7,6 +7,10 @@
     "doc": "docs",
     "test": "test"
   },
+  "engines": {
+    "node": "6.8.1",
+    "npm": "3.10.8"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/louisscruz/knack.git"
   },
+  "postinstall": "./node_modules/.bin/webpack",
   "author": "louisscruz",
   "license": "UNLICENSED",
   "bugs": {
