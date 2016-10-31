@@ -12,13 +12,13 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/louisscruz/knack.git"
   },
-  "postinstall": "./node_modules/.bin/webpack",
   "author": "louisscruz",
   "license": "UNLICENSED",
   "bugs": {
