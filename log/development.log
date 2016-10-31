@@ -1915,3 +1915,24 @@ Processing by StaticPagesController#root as HTML
 Completed 200 OK in 17ms (Views: 15.7ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for ::1 at 2016-10-30 20:49:46 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 17ms (Views: 16.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-10-30 20:51:59 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 26ms (Views: 25.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-10-30 20:52:04 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+
+
