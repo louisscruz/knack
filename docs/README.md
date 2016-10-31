@@ -53,7 +53,11 @@ the API. Channels have members.
 
 ### Phase 4: Direct Messages (2 days)
 
-**Objective:** Creation of direct messages redirects to the correct channel if it already exists; otherwise, it creates the channel and then redirects.
+**Objective:** Creation of direct messages to individuals redirects to the correct channel if it already exists; otherwise, it creates the channel and then redirects.
+
+### Phase 5: Multi-Person Direct Messages
+
+**Objective:** Creation of direct messages to multiple recipients; a channel is created with those people as members.
 
 ### Phase 5: Begin bonus features
 

@@ -8,11 +8,15 @@
   }
   main {
     flex: 1;
-    background: pink;
-    background: -webkit-linear-gradient(left top, pink, green);
-    background: -o-linear-gradient(bottom right, pink, green);
-    background: -moz-linear-gradient(bottom right, pink, green);
-    background: linear-gradient(to bottom right, pink, green);
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff4081+1,1a237e+100 */
+    background: #ff4081; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #ff4081 1%, #1a237e 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #ff4081 1%,#1a237e 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #ff4081 1%,#1a237e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4081', endColorstr='#1a237e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
     display: flex;
     flex-direction: column;
     justify-content: center;
