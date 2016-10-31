@@ -8,6 +8,7 @@ const SplashHeader = (state) => (
       title="knack"
       iconElementLeft={<span></span>}
       iconElementRight={<FlatButton label="Sign In" href="#/sign-in" />}
+      onTouchTap={() => console.log('test')}
       onTitleTouchTap={() => console.log('test')}
       style={{
         backgroundColor: 'transparent'
