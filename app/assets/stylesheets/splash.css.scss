@@ -5,6 +5,9 @@
   header {
     position: fixed;
     width: 100%;
+    h1 {
+      cursor: pointer;
+    }
   }
   main {
     flex: 1;

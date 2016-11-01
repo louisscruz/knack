@@ -19,6 +19,7 @@ sufficient CSS styling:
 - [ ] Channels
 - [ ] Live Chat
 - [ ] Direct Messages
+- [ ] Multi-Person Direct Messages
 - [ ] **Bonus**: Notifications
 - [ ] **Bonus**: Bots (push messages every 2-10 seconds)
 - [ ] Production README

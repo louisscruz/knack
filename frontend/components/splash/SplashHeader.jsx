@@ -1,15 +1,16 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
+import { hashHistory } from 'react-router';
 
 const SplashHeader = (state) => (
   <header>
     <AppBar
-      title="knack"
+      title="kn@ck"
       iconElementLeft={<span></span>}
       iconElementRight={<FlatButton label="Sign In" href="#/sign-in" />}
       onTouchTap={() => console.log('test')}
-      onTitleTouchTap={() => console.log('test')}
+      onTitleTouchTap={() => hashHistory.push('/')}
       style={{
         backgroundColor: 'transparent'
       }}
