@@ -2,16 +2,24 @@ import React from 'react';
 import SplashHeader from './SplashHeader';
 import SplashFooter from './SplashFooter';
 
-const Splash = ({children}) => (
-  <div className="splash">
-    <SplashHeader />
-    <main>
-      <section>
-        {children}
-      </section>
-    </main>
-    <SplashFooter />
-  </div>
-);
+class Splash extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+    return (
+      <div className="splash">
+        <SplashHeader />
+        <main>
+          <section>
+            {this.props.children}
+          </section>
+        </main>
+        <SplashFooter />
+      </div>
+    );
+  }
+}
 
 export default Splash;

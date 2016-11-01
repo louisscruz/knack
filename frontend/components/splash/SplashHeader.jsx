@@ -9,7 +9,6 @@ const SplashHeader = (state) => (
       title="kn@ck"
       iconElementLeft={<span></span>}
       iconElementRight={<FlatButton label="Sign In" href="#/sign-in" />}
-      onTouchTap={() => console.log('test')}
       onTitleTouchTap={() => hashHistory.push('/')}
       style={{
         backgroundColor: 'transparent'

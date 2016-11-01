@@ -3,7 +3,7 @@ import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import merge from 'lodash/merge';
 import { formInvalid, getErrors, setErrors, setTouched } from './FormErrors';
 
@@ -37,6 +37,16 @@ class SignIn extends React.Component {
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.redirectIfLoggedIn();
+  }
+
+  redirectIfLoggedIn() {
+    if (this.props.currentUser) {
+      this.props.router.replace('/messages');
+    }
   }
 
   update(attribute) {
@@ -95,4 +105,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

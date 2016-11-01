@@ -3,14 +3,10 @@ import {
   RECEIVE_CURRENT_USER
 } from '../actions/SessionActions';
 import { merge } from 'lodash';
+// import { hashHistory } from 'react-router';
 
 const emptySession = {
-  loggedIn: false,
-  currentUser: {
-    id: null,
-    username: null,
-    email: null
-  }
+  currentUser: null
 };
 
 export default (state = emptySession, action) => {
@@ -20,8 +16,8 @@ export default (state = emptySession, action) => {
     case LOGIN:
       return state;
     case RECEIVE_CURRENT_USER:
-      newState.loggedIn = true;
       newState.currentUser = action.currentUser;
+      // hashHistory.push('/messages');
       return newState;
     default:
       return state;

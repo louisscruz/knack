@@ -8,19 +8,43 @@ import theme from './Theme';
 import App from './App';
 import SplashContainer from './splash/SplashContainer';
 import SignInContainer from './auth/SignInContainer';
+import ChannelContainer from './channels/ChannelContainer';
 
-const Root = ({ store }) => (
-  <Provider store={store}>
-    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-      <Router history={hashHistory}>
-        <Route component={App}>
-          <Route path="/" component={SplashContainer}>
-            <Route path="/sign-in" component={SignInContainer} />
+const Root = ({ store }) => {
+  const _redirectIfLoggedIn = (nextState, replace) => {
+    const currentUser = store.getState().session.currentUser;
+    console.log('whoops');
+    if (currentUser) {
+      console.log('going');
+      replace('/messages');
+    }
+  };
+
+  const _ensureLoggedIn = (nextState, replace) => {
+    console.log(nextState);
+    const currentUser = store.getState().session.currentUser;
+    if (!currentUser) {
+      replace('/sign-in');
+    }
+  };
+
+
+  return (
+    <Provider store={store}>
+      <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+        <Router history={hashHistory}>
+          <Route component={App}>
+            <Route path="/" component={SplashContainer} onEnter={ _redirectIfLoggedIn }>
+              <Route path="/sign-in" component={SignInContainer} />
+            </Route>
+            <Route path="/messages" component={ChannelContainer} onEnter={ _ensureLoggedIn }>
+            </Route>
           </Route>
-        </Route>
-      </Router>
-    </MuiThemeProvider>
-  </Provider>
-);
+        </Router>
+      </MuiThemeProvider>
+    </Provider>
+  );
+};
+
 
 export default Root;

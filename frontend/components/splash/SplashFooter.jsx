@@ -5,10 +5,7 @@ import { Link } from 'react-router';
 
 const SplashFooter = (state) => (
   <footer>
-    <Paper zDepth={1} rounded={false}>
-      <List>
-        <ListItem primaryText="Sign In" />
-      </List>
+    <Paper zDepth={1} rounded={false} style={{height: 64}}>
     </Paper>
   </footer>
 );
