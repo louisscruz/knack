@@ -3,9 +3,9 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import theme from './theme';
+import theme from './Theme';
 
-import App from './app';
+import App from './App';
 import SplashContainer from './splash/SplashContainer';
 import SignInContainer from './auth/SignInContainer';
 

@@ -5,7 +5,7 @@ import {
   grey800, grey400,
   fullWhite,
 } from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+import { fade } from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
 
 export default {
@@ -20,9 +20,6 @@ export default {
     accent3Color: pinkA100,
     textColor: grey800,
     secondaryTextColor: fade(fullWhite, 0.7),
-    // alternateTextColor: '#303030',
-    // canvasColor: fullWhite,
-    // borderColor: fade(fullWhite, 0.3),
     disabledColor: grey400,
     pickerHeaderColor: fade(fullWhite, 0.12),
     clockCircleColor: fade(fullWhite, 0.12),
