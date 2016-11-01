@@ -13,9 +13,10 @@
     }
   }
   currentChannel: 1,
-  currentUser: {
+  session: {
     id: 1,
-    username: 'louisscruz'
+    username: 'louisscruz',
+    email: 'testtest'
   },
   forms: {
     signUp: {

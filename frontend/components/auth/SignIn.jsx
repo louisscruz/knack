@@ -14,7 +14,6 @@ const Subtitle = () => (
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: {
         value: '',
@@ -37,7 +36,7 @@ class SignIn extends React.Component {
         }
       }
     };
-    this.update = this.update.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   update(attribute) {
@@ -50,36 +49,47 @@ class SignIn extends React.Component {
     };
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const user = {
+      email: this.state.email.value,
+      password: this.state.password.value
+    };
+    this.props.login(user);
+  }
+
   render () {
     return (
       <Card className="auth" zDepth={5}>
-        <CardTitle
-          className="card-title"
-          title="Sign In"
-          subtitle={<Subtitle />}
-          />
-        <CardText className="fields">
-          <TextField
-            hintText="john@doe.com"
-            floatingLabelText="Email"
-            fullWidth={true}
-            errorText={getErrors.call(this, 'email')}
-            onChange={this.update('email')}
-            onBlur={setTouched.call(this, 'email')}
+        <form onSubmit={this.handleSubmit}>
+          <CardTitle
+            className="card-title"
+            title="Sign In"
+            subtitle={<Subtitle />}
             />
-          <TextField
-            hintText="password"
-            floatingLabelText="Password"
-            fullWidth={true}
-            errorText={getErrors.call(this, 'password')}
-            onChange={this.update('password')}
-            onBlur={setTouched.call(this, 'password')}
-            type="password"
-            />
-        </CardText>
-        <CardActions>
-          <RaisedButton label="Submit" primary={true} fullWidth={true} disabled={formInvalid.call(this)}/>
-        </CardActions>
+          <CardText className="fields">
+            <TextField
+              hintText="john@doe.com"
+              floatingLabelText="Email"
+              fullWidth={true}
+              errorText={getErrors.call(this, 'email')}
+              onChange={this.update('email')}
+              onBlur={setTouched.call(this, 'email')}
+              />
+            <TextField
+              hintText="password"
+              floatingLabelText="Password"
+              fullWidth={true}
+              errorText={getErrors.call(this, 'password')}
+              onChange={this.update('password')}
+              onBlur={setTouched.call(this, 'password')}
+              type="password"
+              />
+          </CardText>
+          <CardActions>
+            <RaisedButton type="submit" label="Submit" primary={true} fullWidth={true} disabled={formInvalid.call(this)}/>
+          </CardActions>
+        </form>
       </Card>
     );
   }

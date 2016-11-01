@@ -9,4 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const store = configureStore();
   injectTapEventPlugin();
   ReactDOM.render(<Root store={store}/>, root);
+  window.store = store;
 });

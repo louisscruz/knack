@@ -1,8 +1,10 @@
-export const login = (username, password, success) => {
+export const login = (user, success, error) => {
   $.ajax({
-    url: 'api/session',
+    url: '/api/session',
     type: 'POST',
     dataType: 'json',
-    success
+    data: {user},
+    success,
+    error
   });
 };
