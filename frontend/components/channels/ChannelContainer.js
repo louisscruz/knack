@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Channels from './channels';
+import Channels from './Channels';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser
