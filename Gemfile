@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'byebug', platform: :mri
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -18,13 +19,19 @@ group :development, :test do
   gem 'annotate'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
+  gem 'spring'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
 
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
-  gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
+  gem 'guard-rspec'
 end
 
 group :production do

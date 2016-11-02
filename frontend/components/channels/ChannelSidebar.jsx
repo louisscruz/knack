@@ -4,7 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
-import { withRouter, browserHistory } from 'react-router';
+import { withRouter, hashHistory } from 'react-router';
 
 class ChannelSidebar extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class ChannelSidebar extends React.Component {
 
   logout() {
     this.props.logout();
-    browserHistory.push('/');
+    hashHistory.push('/');
   }
 
   handleTouchTap(event) {
