@@ -3,9 +3,9 @@ export const LOGOUT = 'LOGOUT';
 export const SIGNUP = 'SIGNUP';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
-export const REROUTE_MESSAGES = 'REROUTE_MESSAGES';
+export const REMOVE_CURRENT_USER = 'REMOVE_CURRENT_USER';
 
-export const signup = user => ({
+export const signUp = user => ({
   type: SIGNUP,
   user
 });
@@ -24,11 +24,11 @@ export const receiveCurrentUser = currentUser => ({
   currentUser
 });
 
+export const removeCurrentUser = () => ({
+  type: REMOVE_CURRENT_USER
+});
+
 export const receiveErrors = errors => ({
   type: RECEIVE_ERRORS,
   errors
-});
-
-export const rerouteMessages = () => ({
-  type: REROUTE_MESSAGES
 });

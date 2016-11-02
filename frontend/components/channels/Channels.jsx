@@ -1,6 +1,5 @@
 import React from 'react';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+import ChannelSidebarContainer from './ChannelSidebarContainer';
 
 class Channels extends React.Component {
   constructor(props) {
@@ -10,9 +9,7 @@ class Channels extends React.Component {
   render () {
     return (
       <div>
-        <Drawer open={true}>
-          <MenuItem><h1>kn@ck</h1></MenuItem>
-        </Drawer>
+        <ChannelSidebarContainer />
         <h1>test</h1>
       </div>
     );

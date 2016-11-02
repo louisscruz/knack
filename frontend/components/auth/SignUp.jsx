@@ -8,13 +8,23 @@ import merge from 'lodash/merge';
 import { formInvalid, getErrors, setErrors, setTouched } from './FormErrors';
 
 const Subtitle = () => (
-  <p>No account? <Link to="/sign-up"><FlatButton label="Sign Up" primary={true} /></Link></p>
+  <p>Have an account? <Link to="/sign-in"><FlatButton label="Sign In" primary={true} /></Link></p>
 );
 
-class SignIn extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: {
+        value: '',
+        touched: false,
+        errors: {
+          required: {
+            present: true,
+            message: 'Username is required'
+          }
+        }
+      },
       email: {
         value: '',
         touched: false,
@@ -32,6 +42,16 @@ class SignIn extends React.Component {
           required: {
             present: true,
             message: 'Password is required.'
+          }
+        }
+      },
+      passwordConfirmation: {
+        value: '',
+        touched: false,
+        errors: {
+          required: {
+            present: true,
+            message: 'Password confirmation is required.'
           }
         }
       }
@@ -62,10 +82,11 @@ class SignIn extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = {
+      username: this.state.username.value,
       email: this.state.email.value,
       password: this.state.password.value
     };
-    this.props.login(user);
+    this.props.signUp(user);
   }
 
   render () {
@@ -74,10 +95,18 @@ class SignIn extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <CardTitle
             className="card-title"
-            title="Sign In"
+            title="Sign Up"
             subtitle={<Subtitle />}
             />
           <CardText className="fields">
+            <TextField
+              hintText="johndoe"
+              floatingLabelText="Username"
+              fullWidth={true}
+              errorText={getErrors.call(this, 'username')}
+              onChange={this.update('username')}
+              onBlur={setTouched.call(this, 'username')}
+              />
             <TextField
               hintText="john@doe.com"
               floatingLabelText="Email"
@@ -95,6 +124,15 @@ class SignIn extends React.Component {
               onBlur={setTouched.call(this, 'password')}
               type="password"
               />
+            <TextField
+              hintText="password"
+              floatingLabelText="Password Confirmation"
+              fullWidth={true}
+              errorText={getErrors.call(this, 'passwordConfirmation')}
+              onChange={this.update('passwordConfirmation')}
+              onBlur={setTouched.call(this, 'passwordConfirmation')}
+              type="password"
+              />
           </CardText>
           <CardActions>
             <RaisedButton type="submit" label="Submit" primary={true} fullWidth={true} disabled={formInvalid.call(this)}/>
@@ -105,4 +143,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default withRouter(SignIn);
+export default withRouter(SignUp);

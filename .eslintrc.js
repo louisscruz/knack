@@ -34,6 +34,7 @@ module.exports = {
         ],
         "no-console": 0,
         "no-case-declarations": 0,
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "react/jsx-uses-vars": [2]
     }
 };
