@@ -62,7 +62,7 @@ class SignIn extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = {
-      email: this.state.email.value,
+      email: this.state.email.value.toLowerCase(),
       password: this.state.password.value
     };
     this.props.login(user);

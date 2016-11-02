@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:create]
   end
+
+  get '*all', to: 'static_pages#root', format: false
 end

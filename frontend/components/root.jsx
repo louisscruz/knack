@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import theme from './Theme';
@@ -29,7 +29,7 @@ const Root = ({ store }) => {
   return (
     <Provider store={store}>
       <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
           <Route component={App}>
             <Route path="/" component={SplashContainer} onEnter={ _redirectIfLoggedIn }>
               <Route path="/sign-in" component={SignInContainer} />
