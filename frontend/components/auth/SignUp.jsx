@@ -57,6 +57,7 @@ class SignUp extends React.Component {
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
   componentDidUpdate() {
@@ -89,6 +90,14 @@ class SignUp extends React.Component {
     this.props.signUp(user);
   }
 
+  handleGuestLogin() {
+    const user = {
+      email: 'guest@gmail.com',
+      password: 'password'
+    };
+    this.props.login(user);
+  }
+
   render () {
     return (
       <Card className="auth" zDepth={5}>
@@ -98,6 +107,7 @@ class SignUp extends React.Component {
             title="Sign Up"
             subtitle={<Subtitle />}
             />
+          <RaisedButton onClick={this.handleGuestLogin} label="Guest Sign In" primary={true} />
           <CardText className="fields">
             <TextField
               hintText="johndoe"

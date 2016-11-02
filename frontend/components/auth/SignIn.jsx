@@ -8,7 +8,9 @@ import merge from 'lodash/merge';
 import { formInvalid, getErrors, setErrors, setTouched } from './FormErrors';
 
 const Subtitle = () => (
-  <p>No account? <Link to="/sign-up"><FlatButton label="Sign Up" primary={true} /></Link></p>
+  <div>
+    <p>No account? <Link to="/sign-up"><FlatButton label="Sign Up" primary={true} /></Link></p>
+  </div>
 );
 
 class SignIn extends React.Component {
@@ -37,6 +39,7 @@ class SignIn extends React.Component {
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
   componentDidUpdate() {
@@ -68,6 +71,21 @@ class SignIn extends React.Component {
     this.props.login(user);
   }
 
+  handleGuestLogin() {
+    let newState = merge({}, this.state);
+    newState.email.value = 'guest@gmail.com';
+    newState.password.value = 'password';
+    this.setState(newState, () => {
+      setTouched.call(this, 'password');
+      setTouched.call(this, 'email');
+      const user = {
+        email: this.state.email.value.toLowerCase(),
+        password: this.state.password.value
+      };
+      this.props.login(user);
+    });
+  }
+
   render () {
     return (
       <Card className="auth" zDepth={5}>
@@ -77,12 +95,14 @@ class SignIn extends React.Component {
             title="Sign In"
             subtitle={<Subtitle />}
             />
+          <RaisedButton onClick={this.handleGuestLogin} label="Guest Sign In" primary={true} />
           <CardText className="fields">
             <TextField
               hintText="john@doe.com"
               floatingLabelText="Email"
               fullWidth={true}
               errorText={getErrors.call(this, 'email')}
+              value={this.state.email.value}
               onChange={this.update('email')}
               onBlur={setTouched.call(this, 'email')}
               />
@@ -91,6 +111,7 @@ class SignIn extends React.Component {
               floatingLabelText="Password"
               fullWidth={true}
               errorText={getErrors.call(this, 'password')}
+              value={this.state.password.value}
               onChange={this.update('password')}
               onBlur={setTouched.call(this, 'password')}
               type="password"

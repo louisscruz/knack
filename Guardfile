@@ -31,7 +31,7 @@ guard 'livereload' do
   rails_view_exts = %w(erb haml slim)
   compiled_exts = extensions.values.uniq
   watch(%r{public/.+\.(#{compiled_exts * '|'})})
-  extensions.each do |ext, _|
+  extensions.each do |ext, type|
     watch(%r{
           (?:app|vendor)
           (?:/assets/\w+/(?<path>[^.]+) # path+base without extension
@@ -46,9 +46,3 @@ guard 'livereload' do
   watch(%r{app/helpers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
 end
-
-# guard :rspec, cmd: 'spring rspec' do
-#   watch(%r{^app/}) { 'spec' }
-#   watch(%r{^spec/}) { 'spec' }
-#   watch('config/routes.rb') { 'spec' }
-# end

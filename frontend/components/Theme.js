@@ -27,8 +27,5 @@ export default {
   },
   drawer: {
     color: pinkA200,
-  },
-  menuItem: {
-    textAlign: 'center'
   }
 };
