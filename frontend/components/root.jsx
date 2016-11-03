@@ -11,6 +11,8 @@ import SignInContainer from './auth/SignInContainer';
 import SignUpContainer from './auth/SignUpContainer';
 import ChannelContainer from './channels/ChannelContainer';
 
+import { fetchChannels } from '../actions/ChannelActions';
+
 const Root = ({ store }) => {
   const _redirectIfLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
@@ -19,11 +21,17 @@ const Root = ({ store }) => {
     }
   };
 
-  const _ensureLoggedIn = (nextState, replace) => {
+  const handleMessagesEnter = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
       replace('/sign-in');
+    } else {
+      requestAllChannels();
     }
+  };
+
+  const requestAllChannels = () => {
+    store.dispatch(fetchChannels());
   };
 
   return (
@@ -35,7 +43,7 @@ const Root = ({ store }) => {
               <Route path="/sign-in" component={SignInContainer} />
               <Route path="/sign-up" component={SignUpContainer} />
             </Route>
-            <Route path="/messages" component={ChannelContainer} onEnter={ _ensureLoggedIn }>
+            <Route path="/messages" component={ChannelContainer} onEnter={ handleMessagesEnter }>
             </Route>
           </Route>
         </Router>

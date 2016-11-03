@@ -14,17 +14,13 @@ body {
 }
 
 header::before {
+  // Currently, the scrollable content goes over the header...
   background-color: white;
-  opacity: 0.4;
-  -webkit-filter: blur(20px);
-  -moz-filter: blur(20px);
-  -o-filter: blur(20px);
-  -ms-filter: blur(20px);
-  filter: blur(20px);
+  opacity: 0.15;
   content: '';
   height: 64px;
   width: 100%;
   // z-index: 100 !important;
   display: inline-block;
-  position: fixed;
+  position: absolute;
 }

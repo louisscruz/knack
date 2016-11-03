@@ -3,7 +3,7 @@ export const login = (user, success, error) => {
     url: '/api/session',
     type: 'POST',
     dataType: 'json',
-    data: {user},
+    data: { user },
     success,
     error
   });

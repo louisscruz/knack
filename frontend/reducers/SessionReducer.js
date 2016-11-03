@@ -1,5 +1,4 @@
 import {
-  LOGIN,
   LOGOUT,
   RECEIVE_CURRENT_USER,
   REMOVE_CURRENT_USER
@@ -14,8 +13,6 @@ export default (state = emptySession, action) => {
   Object.freeze(state);
   let newState = merge({}, state);
   switch(action.type) {
-    case LOGIN:
-      return state;
     case LOGOUT:
       return emptySession;
     case RECEIVE_CURRENT_USER:

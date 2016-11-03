@@ -1,20 +1,44 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  email           :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # describe 'validations' do
-  #   before(:each) do
-  #     @user = User.create!(username: 'mary_mack2',
-  #                          email: 'test2@me.com',
-  #                          password: 'abcdefgh')
-  #   end
-  #
-  #   it { should validate_presence_of(:username) }
-  #   it { should validate_uniqueness_of(:username) }
-  #   it { should validate_presence_of(:password) }
-  #   it { should validate_presence_of(:email) }
-  #   it { should validate_uniqueness_of(:email) }
-  #   it { should validate_presence_of(:session_token) }
-  # end
+  before(:each) do
+    Channel::GLOBAL_SUBJECTS.each do |topic|
+      Channel.create!(
+        name: topic,
+        purpose: "This channel is for discussion about #{topic}"
+      )
+    end
+  end
+
+  describe 'validations' do
+    before(:each) do
+      @user = User.create!(username: 'mary_mack2',
+                           email: 'test2@me.com',
+                           password: 'abcdefgh')
+    end
+
+    it { should validate_presence_of(:username) }
+    it { should validate_uniqueness_of(:username) }
+    it { should allow_value(nil).for(:password) }
+    it { should validate_length_of(:password).is_at_least(8) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_presence_of(:session_token) }
+    xit { should validate_uniqueness_of(:session_token) }
+  end
 
   describe 'password encryption' do
     it 'does not save passwords to the database' do
@@ -34,6 +58,19 @@ RSpec.describe User, type: :model do
         email: 'test@me.com',
         password: 'abcdefgh'
       )
+    end
+  end
+
+  describe 'associations' do
+    before(:each) do
+      @user = User.create!(username: 'mary_mack2',
+                           email: 'test2@me.com',
+                           password: 'abcdefgh')
+    end
+
+    it 'initializes with the proper channels' do
+      channel_count = Channel::GLOBAL_SUBJECTS.length
+      expect(@user.channel_memberships.length).to eq(channel_count)
     end
   end
 end

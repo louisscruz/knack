@@ -3,7 +3,8 @@ import ChannelSidebar from './ChannelSidebar';
 import { logout } from '../../actions/SessionActions';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  channels: state.channels
 });
 
 const mapDispatchToProps = dispatch => ({

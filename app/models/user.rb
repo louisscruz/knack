@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  email           :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   attr_reader :password
 
@@ -6,6 +19,13 @@ class User < ApplicationRecord
   validates :username, :password_digest, :email, :session_token, presence: true
   validates :username, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
+  after_create :ensure_subscribed_to_channels
+
+  has_many :channel_memberships,
+           foreign_key: :member_id,
+           primary_key: :id,
+           class_name: 'ChannelMembership'
+  has_many :channels, through: :channel_memberships
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -37,5 +57,16 @@ class User < ApplicationRecord
   def password?(password)
     bc_object = BCrypt::Password.new(password_digest)
     bc_object.is_password?(password)
+  end
+
+  def ensure_subscribed_to_channels
+    Channel::GLOBAL_SUBJECTS.each do |topic|
+      channel = Channel.find_by(name: topic)
+      next if channel.nil?
+      ChannelMembership.create!(
+        member_id: self.id,
+        channel_id: channel.id
+      )
+    end
   end
 end

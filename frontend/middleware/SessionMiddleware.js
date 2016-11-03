@@ -1,7 +1,6 @@
 import {
   receiveCurrentUser,
   removeCurrentUser,
-  receiveErrors,
   LOGIN,
   LOGOUT,
   SIGNUP } from '../actions/SessionActions';

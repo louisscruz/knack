@@ -2,8 +2,11 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
-import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
+import { Popover, PopoverAnimationVertical } from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
+import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import AddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
+import IconButton from 'material-ui/IconButton';
 import { withRouter, hashHistory } from 'react-router';
 
 class ChannelSidebar extends React.Component {
@@ -16,6 +19,7 @@ class ChannelSidebar extends React.Component {
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.logout = this.logout.bind(this);
   }
+
   componentDidUpdate() {
     this.redirectIfLoggedOut();
   }
@@ -31,11 +35,11 @@ class ChannelSidebar extends React.Component {
     hashHistory.push('/');
   }
 
-  handleTouchTap(event) {
-    event.preventDefault();
+  handleTouchTap(e) {
+    e.preventDefault();
     this.setState({
       menuOpen: true,
-      anchorEl: event.currentTarget,
+      anchorEl: e.currentTarget,
     });
   }
 
@@ -51,8 +55,9 @@ class ChannelSidebar extends React.Component {
         <MenuItem><h1>kn@ck</h1></MenuItem>
         <MenuItem
           className="account-menu"
+          primaryText={this.props.currentUser.username}
+          rightIcon={<ArrowDropDown />}
           onTouchTap={this.handleTouchTap}>
-          {this.props.currentUser.username}
           <Popover
             open={this.state.menuOpen}
             anchorEl={this.state.anchorEl}
@@ -67,9 +72,16 @@ class ChannelSidebar extends React.Component {
           </Popover>
         </MenuItem>
         <Divider />
-        <MenuItem
-          focusState="none"
-          primaryText="Channels" />
+        <p className="list-title">Channels</p>
+        {
+          Object.keys(this.props.channels).map(id => {
+            return (
+              <MenuItem key={id} primaryText={this.props.channels[id].name} />
+            )
+          })
+        }
+        <Divider />
+        <p className="list-title">Direct Messages <IconButton><AddCircleOutline /></IconButton></p>
       </Drawer>
     );
   }

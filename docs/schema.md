@@ -20,7 +20,7 @@ purpose     | text      |
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-member_id     | integer   | not null, foreign_key (references users), indexed, indexed w/channel_id (made unique)
+member_id   | integer   | not null, foreign_key (references users), indexed, indexed w/channel_id (made unique)
 channel_id  | integer   | not null, foreign_key (references channels), indexed, indexed w/member_id (made unique)
 
 ## messages
