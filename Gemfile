@@ -9,6 +9,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -20,7 +21,6 @@ group :development, :test do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
   gem 'spring'
-  gem 'faker'
   gem 'bullet'
 end
 
