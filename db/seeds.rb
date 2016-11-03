@@ -1,6 +1,12 @@
 p 'Generating users'
 
 User.create!(
+  username: 'knack_bot',
+  email: 'lsc@juilliard.edu',
+  password: 'testtest'
+)
+
+User.create!(
   username: 'louisscruz',
   email: 'louisstephancruz@me.com',
   password: 'testtest'
@@ -39,3 +45,18 @@ User.all.each do |user|
 end
 
 p "Generated #{ChannelMembership.count} channel memberships"
+
+p 'Generating messages'
+
+bot = User.find_by(username: 'knack_bot')
+
+300.times do
+  random_channel_id = (1...Channel.count).to_a.sample
+  Message.create!(
+    body: Faker::StarWars.quote,
+    author_id: bot.id,
+    channel_id: random_channel_id
+  )
+end
+
+p "Generated #{Message.count} messages"

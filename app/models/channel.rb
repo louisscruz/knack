@@ -20,6 +20,10 @@ class Channel < ApplicationRecord
            primary_key: :id,
            class_name: 'ChannelMembership'
   has_many :members, through: :memberships
+  has_many :messages,
+           foreign_key: :channel_id,
+           primary_key: :id,
+           class_name: 'Message'
 
   def lowercase_name!
     name.downcase!

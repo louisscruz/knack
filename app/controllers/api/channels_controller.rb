@@ -15,6 +15,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def set_channel
-    @channel = Channel.find_by(name: params[:name])
+    @channel = Channel.includes(:messages, messages: :author)
+                      .find_by(name: params[:name])
   end
 end

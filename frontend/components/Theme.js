@@ -28,6 +28,7 @@ export default {
     color: pinkA200,
   },
   toolbar: {
-    backgroundColor: fullWhite
+    color: fullWhite,
+    backgroundColor: grey400
   }
 };

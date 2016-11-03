@@ -34,5 +34,6 @@ RSpec.describe Channel, type: :model do
   describe 'associations' do
     it { should have_many(:memberships) }
     it { should have_many(:members) }
+    it { should have_many(:messages) }
   end
 end

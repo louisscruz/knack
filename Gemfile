@@ -20,6 +20,8 @@ group :development, :test do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
   gem 'spring'
+  gem 'faker'
+  gem 'bullet'
 end
 
 group :test do

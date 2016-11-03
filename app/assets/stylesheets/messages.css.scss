@@ -1,6 +1,30 @@
+@import "variables";
+
 .messages-container {
   background-color: white;
   height: 100%;
   flex: 1;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  .channel-messages {
+    flex: 1;
+    overflow-y: scroll;
+  }
+  .message-input-container {
+    height: 86px;
+    background-color: $secondary;
+    display: flex;
+    form {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 100%;
+      button {
+        height: 100% !important;
+      }
+      .messages-input {
+        flex: 1;
+        margin-left: 16px;
+      }
+    }
+  }
 }

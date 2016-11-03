@@ -26,6 +26,10 @@ class User < ApplicationRecord
            primary_key: :id,
            class_name: 'ChannelMembership'
   has_many :channels, through: :channel_memberships
+  has_many :messages,
+           foreign_key: :author_id,
+           primary_key: :id,
+           class_name: 'Message'
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

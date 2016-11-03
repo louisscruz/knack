@@ -19,18 +19,10 @@
   display: flex;
   flex-direction: column;
   .channel-content-container {
-    background-color: yellow;
+    overflow-x: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
-    .one {
-      height: 64px;
-      background-color: red;
-    }
-    .two {
-      flex: 1;
-      background-color: orange;
-    }
   }
 }
 
@@ -41,5 +33,5 @@
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

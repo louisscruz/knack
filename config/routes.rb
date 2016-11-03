@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:create]
     resources :channels, only: [:index, :create, :show, :destroy], param: :name
+    resources :messages, only: [:create, :update, :destroy]
   end
 
   get '*all', to: 'static_pages#root', format: false

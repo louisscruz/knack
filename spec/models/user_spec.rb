@@ -67,6 +67,9 @@ RSpec.describe User, type: :model do
                            email: 'test2@me.com',
                            password: 'abcdefgh')
     end
+    it { should have_many(:messages) }
+    it { should have_many(:channel_memberships) }
+    it { should have_many(:channels) }
 
     it 'initializes with the proper channels' do
       channel_count = Channel::GLOBAL_SUBJECTS.length
