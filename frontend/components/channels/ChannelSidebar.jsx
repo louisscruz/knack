@@ -73,13 +73,15 @@ class ChannelSidebar extends React.Component {
         </MenuItem>
         <Divider />
         <p className="list-title">Channels</p>
-        {
-          Object.keys(this.props.channels).map(id => {
-            return (
-              <MenuItem key={id} primaryText={this.props.channels[id].name} />
-            )
-          })
-        }
+        <div className="channels-container">
+          {
+            Object.keys(this.props.channels).map(id => {
+              return (
+                <MenuItem key={id} primaryText={this.props.channels[id].name} />
+              )
+            })
+          }
+        </div>
         <Divider />
         <p className="list-title">Direct Messages <IconButton><AddCircleOutline /></IconButton></p>
       </Drawer>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ChannelSidebarContainer from './ChannelSidebarContainer';
+import ChannelContentContainer from './ChannelContentContainer';
 
 class Channels extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Channels extends React.Component {
     return (
       <div>
         <ChannelSidebarContainer />
-        <h1>test</h1>
+        <ChannelContentContainer />
       </div>
     );
   }
