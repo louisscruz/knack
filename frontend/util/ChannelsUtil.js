@@ -6,3 +6,12 @@ export const getChannels = success => {
     success
   });
 };
+
+export const getChannel = (id, success) => {
+  $.ajax({
+    url: `/api/channels/${id}`,
+    type: 'GET',
+    dataType: 'json',
+    success
+  });
+};

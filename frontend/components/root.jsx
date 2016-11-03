@@ -1,6 +1,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import theme from './Theme';
@@ -10,14 +10,15 @@ import SplashContainer from './splash/SplashContainer';
 import SignInContainer from './auth/SignInContainer';
 import SignUpContainer from './auth/SignUpContainer';
 import ChannelContainer from './channels/ChannelContainer';
+import MessagesIndexContainer from './messages/MessagesIndexContainer';
 
-import { fetchChannels } from '../actions/ChannelActions';
+import { fetchChannels, fetchChannel } from '../actions/ChannelActions';
 
 const Root = ({ store }) => {
   const _redirectIfLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
     if (currentUser) {
-      replace('/messages');
+      replace('/messages/general');
     }
   };
 
@@ -27,11 +28,16 @@ const Root = ({ store }) => {
       replace('/sign-in');
     } else {
       requestAllChannels();
+      requestChannel(nextState.params.channelName);
     }
   };
 
   const requestAllChannels = () => {
     store.dispatch(fetchChannels());
+  };
+
+  const requestChannel = name => {
+    store.dispatch(fetchChannel(name));
   };
 
   return (
@@ -43,7 +49,8 @@ const Root = ({ store }) => {
               <Route path="/sign-in" component={SignInContainer} />
               <Route path="/sign-up" component={SignUpContainer} />
             </Route>
-            <Route path="/messages" component={ChannelContainer} onEnter={ handleMessagesEnter }>
+            <Route path="/messages" component={ChannelContainer}>
+              <Route path=":channelName" component={MessagesIndexContainer} onEnter={ handleMessagesEnter }/>
             </Route>
           </Route>
         </Router>

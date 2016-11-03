@@ -11,7 +11,7 @@ class Channels extends React.Component {
     return (
       <div>
         <ChannelSidebarContainer />
-        <ChannelContentContainer />
+        <ChannelContentContainer children={this.props.children}/>
       </div>
     );
   }

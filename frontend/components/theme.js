@@ -3,7 +3,6 @@ import {
   pinkA100, pinkA400,
   greenA200,
   grey800, grey400,
-  indigo900,
   fullWhite,
 } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
@@ -27,5 +26,8 @@ export default {
   },
   drawer: {
     color: pinkA200,
+  },
+  toolbar: {
+    backgroundColor: fullWhite
   }
 };

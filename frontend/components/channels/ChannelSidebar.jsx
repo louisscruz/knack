@@ -18,6 +18,7 @@ class ChannelSidebar extends React.Component {
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.logout = this.logout.bind(this);
+    this.setCurrentChannel = this.setCurrentChannel.bind(this);
   }
 
   componentDidUpdate() {
@@ -49,6 +50,13 @@ class ChannelSidebar extends React.Component {
     });
   }
 
+  setCurrentChannel(name) {
+    return () => {
+      const url = `/messages/${name}`;
+      this.props.router.push(url);
+    };
+  }
+
   render () {
     return (
       <Drawer open={true} className="sidebar">
@@ -77,7 +85,12 @@ class ChannelSidebar extends React.Component {
           {
             Object.keys(this.props.channels).map(id => {
               return (
-                <MenuItem key={id} primaryText={this.props.channels[id].name} />
+                <MenuItem
+                  key={id}
+                  primaryText={this.props.channels[id].name}
+                  onTouchTap={this.setCurrentChannel(this.props.channels[id].name)}
+                  style={{minHeight: '32px', lineHeight: '32px'}}
+                />
               )
             })
           }

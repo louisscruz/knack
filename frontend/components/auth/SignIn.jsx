@@ -48,7 +48,7 @@ class SignIn extends React.Component {
 
   redirectIfLoggedIn() {
     if (this.props.currentUser) {
-      this.props.router.replace('/messages');
+      this.props.router.replace('/messages/general');
     }
   }
 

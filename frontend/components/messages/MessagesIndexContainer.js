@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
-import Channels from './Channels';
+import MessagesIndex from './MessagesIndex';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
+  currentChannel: state.currentChannel
 });
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = dispatch => ({
 
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Channels);
+)(MessagesIndex);
