@@ -11,9 +11,7 @@ class ChannelContainer extends React.Component {
               <ToolbarTitle text={this.props.currentChannel.name} />
             </ToolbarGroup>
           </Toolbar>
-          <div className="two">
-            {this.props.children}
-          </div>
+          {this.props.children}
         </div>
       </div>
     );
