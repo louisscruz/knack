@@ -6,6 +6,7 @@ import { Popover, PopoverAnimationVertical } from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import AddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
+import Clear from 'material-ui/svg-icons/content/clear';
 import IconButton from 'material-ui/IconButton';
 import { fullWhite } from 'material-ui/styles/colors';
 import { withRouter, hashHistory, Link } from 'react-router';
@@ -60,12 +61,13 @@ class ChannelSidebar extends React.Component {
 
   render () {
     return (
-      <Drawer open={true} className="sidebar">
+      <Drawer open={this.props.sidebarOpen} className="sidebar">
+        <IconButton onTouchTap={this.props.toggleSidebar}><Clear /></IconButton>
         <MenuItem><h1>kn@ck</h1></MenuItem>
         <MenuItem
           className="account-menu"
           primaryText={this.props.currentUser.username}
-          rightIcon={<ArrowDropDown />}
+          rightIcon={<ArrowDropDown color={fullWhite}/>}
           onTouchTap={this.handleTouchTap}>
           <Popover
             open={this.state.menuOpen}
