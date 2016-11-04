@@ -17,7 +17,10 @@ header::before {
   content: '';
   height: 64px;
   width: 100%;
-  // z-index: 100 !important;
   display: inline-block;
   position: absolute;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

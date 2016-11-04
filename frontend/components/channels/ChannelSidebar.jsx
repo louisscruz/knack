@@ -7,7 +7,8 @@ import Menu from 'material-ui/Menu';
 import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import AddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
-import { withRouter, hashHistory } from 'react-router';
+import { fullWhite } from 'material-ui/styles/colors';
+import { withRouter, hashHistory, Link } from 'react-router';
 
 class ChannelSidebar extends React.Component {
   constructor(props) {
@@ -85,18 +86,25 @@ class ChannelSidebar extends React.Component {
           {
             Object.keys(this.props.channels).map(id => {
               return (
-                <MenuItem
+                <Link
+                  to={`/messages/${this.props.channels[id].name}`}
                   key={id}
-                  primaryText={this.props.channels[id].name}
-                  onTouchTap={this.setCurrentChannel(this.props.channels[id].name)}
-                  style={{minHeight: '32px', lineHeight: '32px'}}
-                />
-              )
+                  className="channel-item"
+                  activeClassName="active"
+                >
+                  <MenuItem
+                    key={id}
+                    primaryText={this.props.channels[id].name}
+                    style={{minHeight: '32px', lineHeight: '32px'}}
+                  />
+                </Link>
+
+              );
             })
           }
         </div>
         <Divider />
-        <p className="list-title">Direct Messages <IconButton><AddCircleOutline /></IconButton></p>
+        <p className="list-title">Direct Messages <IconButton><AddCircleOutline color={fullWhite}/></IconButton></p>
       </Drawer>
     );
   }

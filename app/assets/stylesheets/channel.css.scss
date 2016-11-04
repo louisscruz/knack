@@ -7,7 +7,8 @@
 }
 
 .list-title {
-  font-weight: 700;
+  font-weight: 500;
+  text-decoration: underline;
   button {
     vertical-align: middle;
   }
@@ -30,8 +31,26 @@
   height: 200px;
   overflow-x: hidden;
   overflow-y: scroll;
+  .channel-item {
+    text-decoration: none !important;
+    &.active div {
+      background-color: #424242 !important;
+    }
+  }
 }
 
-::-webkit-scrollbar {
-  display: none;
+.sidebar > div{
+  background: #ff4081;
+  background: -moz-linear-gradient(top,  #ff4081 0%, #1a237e 100%);
+  background: -webkit-linear-gradient(top,  #ff4081 0%,#1a237e 100%);
+  background: linear-gradient(to bottom,  #ff4081 0%,#1a237e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4081', endColorstr='#1a237e',GradientType=0 );
+  p {
+    color: white !important;
+  }
+  .channels-container {
+    div {
+      color: white !important;
+    }
+  }
 }
