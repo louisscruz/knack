@@ -18,9 +18,25 @@ class MessagesIndex extends React.Component {
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
   }
 
+  componentWillMount() {
+    App.room = App.cable.subscriptions.create("RoomChannel", {
+      connected: function() {},
+      disconnected: function() {},
+      received: function(data) {
+        return store.dispatch(addMessage(data['message']));
+      },
+      speak: function(message) {
+        return this.perform('speak', {
+          message: message
+        });
+      }
+    });
+  }
+
   componentDidUpdate() {
     this.scrollToBottom();
   }
+
   updateMessage(e) {
     this.setState({message: e.target.value});
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
-import Menu from 'material-ui/svg-icons/navigation/Menu';
+import Menu from 'material-ui/svg-icons/navigation/menu';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 
 class ChannelContainer extends React.Component {
@@ -11,7 +11,7 @@ class ChannelContainer extends React.Component {
       },
       menuButton: {
         height: '100%',
-        display: this.props.sidebarOpen ?  'none' : 'inline'
+        display: this.props.sidebarOpen ? 'none' : 'inline'
       }
     };
     return (
