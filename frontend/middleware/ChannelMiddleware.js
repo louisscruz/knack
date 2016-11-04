@@ -25,7 +25,6 @@ export default ({ dispatch }) => next => action => {
       getChannel(action.id, fetchChannelSuccess);
       return next(action);
     case POST_MESSAGE:
-      console.log('hit it');
       postMessage(action.message, postMessageSuccess);
       return next(action);
     default:

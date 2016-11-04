@@ -27,7 +27,13 @@ class MessagesIndex extends React.Component {
 
   handleMessageSubmit(e) {
     e.preventDefault();
-    this.props.postMessage(this.state);
+    const message = {
+      body: this.state.message,
+      channel_id: this.props.currentChannel.id,
+      author_id: this.props.currentUser.id
+    };
+    this.props.postMessage(message);
+    this.setState({ message: '' });
   }
 
   scrollToBottom() {
@@ -56,7 +62,9 @@ class MessagesIndex extends React.Component {
       }
     } else {
       messages = (
-        <h2>No messages yet!</h2>
+        <div className="no-messages">
+          <h2>No messages yet!</h2>
+        </div>
       );
     }
     return (
@@ -74,6 +82,7 @@ class MessagesIndex extends React.Component {
               className="messages-input"
               inputStyle={{color: pinkA200}}
               floatingLabelStyle={{ color: fullWhite }}
+              value={this.state.message}
               onChange={this.updateMessage}
             />
           </form>

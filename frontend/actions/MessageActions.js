@@ -3,7 +3,6 @@ export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 
 export const postMessage = message => ({
   type: POST_MESSAGE,
-  other: console.log('dispatched action'),
   message
 });
 

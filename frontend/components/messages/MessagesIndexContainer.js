@@ -5,7 +5,8 @@ import { postMessage } from '../../actions/MessageActions';
 
 const mapStateToProps = state => ({
   currentChannel: state.currentChannel,
-  messages: state.currentChannel.messages
+  messages: state.currentChannel.messages,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -28,3 +28,12 @@
     }
   }
 }
+
+.no-messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: #6f6f6f;
+}
