@@ -1,8 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import TextField from 'material-ui/TextField';
 import AddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 import { pinkA200, fullWhite } from 'material-ui/styles/colors';
 
 class MessagesIndex extends React.Component {
@@ -17,6 +18,9 @@ class MessagesIndex extends React.Component {
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
   }
 
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
   updateMessage(e) {
     this.setState({message: e.target.value});
   }
@@ -24,6 +28,11 @@ class MessagesIndex extends React.Component {
   handleMessageSubmit(e) {
     e.preventDefault();
     this.props.postMessage(this.state);
+  }
+
+  scrollToBottom() {
+    const height = this.refs.channelMessages.scrollHeight;
+    ReactDOM.findDOMNode(this.refs.channelMessages).scrollTop = height;
   }
 
   render () {
@@ -52,8 +61,9 @@ class MessagesIndex extends React.Component {
     }
     return (
       <div className="messages-container">
-        <div className="channel-messages">
+        <div className="channel-messages" ref="channelMessages">
           {messages}
+          <div id="messages-end"></div>
         </div>
         <div className="message-input-container">
           <form onSubmit={this.handleMessageSubmit}>

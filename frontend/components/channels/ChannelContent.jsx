@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 
 class ChannelContainer extends React.Component {
   render () {
