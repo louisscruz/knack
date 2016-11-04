@@ -9,6 +9,10 @@
   .channel-messages {
     flex: 1;
     overflow-y: scroll;
+    .message {
+      max-width: 720px;
+      margin: 8px auto;
+    }
   }
   .message-input-container {
     height: 86px;

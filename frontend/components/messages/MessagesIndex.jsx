@@ -51,7 +51,7 @@ class MessagesIndex extends React.Component {
         messages = (
           Object.keys(this.props.messages)
                 .map(key => (
-                  <Card key={key}>
+                  <Card key={key} className="message">
                     <CardTitle title={this.props.messages[key].author.username} />
                     <CardText>
                       {this.props.messages[key].body}
@@ -71,7 +71,6 @@ class MessagesIndex extends React.Component {
       <div className="messages-container">
         <div className="channel-messages" ref="channelMessages">
           {messages}
-          <div id="messages-end"></div>
         </div>
         <div className="message-input-container">
           <form onSubmit={this.handleMessageSubmit}>
