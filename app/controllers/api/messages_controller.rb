@@ -4,7 +4,14 @@ class Api::MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     if @message.save
-      ActionCable.server.broadcast("channel_#{@message.channel.name}", {message: @message})
+      ActionCable.server.broadcast("channel_#{@message.channel.name}", {message: {
+        id: @message.id,
+        body: @message.body,
+        author: {
+          id: @message.author.id,
+          username: @message.author.username
+        }
+      }})
       render 'api/messages/show'
     else
       render json: message.errors.full_messages, status: :unprocessable_entity
