@@ -47,10 +47,18 @@ class Root extends React.Component {
   }
 
   setSocket(channelName) {
-    const that = this;
     if (window.App.channel) {
-      window.App.cable.subscriptions.remove(window.App.channel);
+      this.removeSocket();
     }
+    this.addSocket(channelName);
+  }
+
+  removeSocket() {
+    window.App.cable.subscriptions.remove(window.App.channel);
+  }
+
+  addSocket(channelName) {
+    const that = this;
     window.App.channel = window.App.cable.subscriptions.create({
       channel: 'ChannelChannel',
       channel_name: channelName
@@ -58,7 +66,6 @@ class Root extends React.Component {
       connected: function() {},
       disconnected: function() {},
       received: function(data) {
-        console.log('received', data);
         that.props.store.dispatch(receiveMessage(data.message));
       }
     });
