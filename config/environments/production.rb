@@ -86,11 +86,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_cable.url = 'ws://www.knack.live/cable'
-  config.action_cable.allowed_request_origins = [
-    'https://knacklive.herokuapp.com',
-    /http:\/\/knacklive.herokuapp.com.*/,
-    'http://www.knack.live',
-    /http:\/\/www.knack.live.*/
-  ]
+  # config.action_cable.url = 'ws://www.knack.live/cable'
+  # config.action_cable.allowed_request_origins = [
+  #   'https://knacklive.herokuapp.com',
+  #   /http:\/\/knacklive.herokuapp.com.*/,
+  #   'http://www.knack.live',
+  #   /http:\/\/www.knack.live.*/
+  # ]
 end
