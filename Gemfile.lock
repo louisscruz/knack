@@ -173,6 +173,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redis (3.3.1)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -260,6 +261,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_12factor
+  redis
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers
