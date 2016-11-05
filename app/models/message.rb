@@ -1,4 +1,5 @@
 class Message < ApplicationRecord
+  after_commit { MessageRelayJob.perform_later(self, self.channel) }
   validates :body, :author_id, :channel_id, presence: true
 
   before_validation :validates_membership

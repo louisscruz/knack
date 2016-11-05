@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MessagesIndex from './MessagesIndex';
 
-import { postMessage } from '../../actions/MessageActions';
+import { postMessage, receiveMessage } from '../../actions/MessageActions';
 
 const mapStateToProps = state => ({
   currentChannel: state.currentChannel,
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  postMessage: message => dispatch(postMessage(message))
+  postMessage: message => dispatch(postMessage(message)),
+  receiveMessage: message => dispatch(receiveMessage(message))
 });
 
 export default connect(
