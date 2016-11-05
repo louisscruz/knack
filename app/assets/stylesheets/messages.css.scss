@@ -21,10 +21,8 @@
     justify-content: center;
     form {
       display: flex;
+      align-items: center;
       width: 100%;
-      button {
-        height: 100% !important;
-      }
       .messages-input {
         flex: 1;
         margin-left: 16px;

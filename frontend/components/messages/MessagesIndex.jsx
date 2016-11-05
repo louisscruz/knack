@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom';
 import TextField from 'material-ui/TextField';
 import AddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import { pinkA200, fullWhite } from 'material-ui/styles/colors';
+import merge from 'lodash/merge';
 
 class MessagesIndex extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      message: ''
+      message: '',
+      valid: false
     };
 
     this.updateMessage = this.updateMessage.bind(this);
@@ -24,7 +28,16 @@ class MessagesIndex extends React.Component {
   }
 
   updateMessage(e) {
-    this.setState({message: e.target.value});
+    let newState = merge({}, this.state);
+    newState.message = e.target.value;
+    if (!this.state.valid) {
+      if (newState.message.length > 0) {
+        newState.valid = true;
+      }
+    } else if (newState.message.length === 0) {
+      newState.valid = false;
+    }
+    this.setState(newState);
   }
 
   handleKeyDown(e) {
@@ -39,7 +52,7 @@ class MessagesIndex extends React.Component {
       author_id: this.props.currentUser.id
     };
     this.props.postMessage(message);
-    this.setState({ message: '' });
+    this.setState({ message: '', valid: false });
   }
 
   scrollToBottom() {
@@ -76,6 +89,9 @@ class MessagesIndex extends React.Component {
     const styles = {
       form: {
         maxWidth: this.props.maxWidth
+      },
+      submitButton: {
+        marginRight: '16px'
       }
     };
     return (
@@ -97,8 +113,15 @@ class MessagesIndex extends React.Component {
               multiLine={true}
               rows={1}
               rowsMax={2}
-            />
-            <IconButton type="submit"><AddCircleOutline color={'white'}/></IconButton>
+              />
+            <FloatingActionButton
+              type="submit"
+              mini={true}
+              disabled={!this.state.valid}
+              style={styles.submitButton}
+              >
+              <ContentAdd />
+            </FloatingActionButton>
           </form>
         </div>
       </div>
