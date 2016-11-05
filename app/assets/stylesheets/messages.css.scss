@@ -15,12 +15,12 @@
     }
   }
   .message-input-container {
-    height: 86px;
+    height: 96px;
     background-color: #424242;
     display: flex;
+    justify-content: center;
     form {
       display: flex;
-      flex-direction: row-reverse;
       width: 100%;
       button {
         height: 100% !important;

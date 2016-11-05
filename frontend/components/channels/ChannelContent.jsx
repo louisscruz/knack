@@ -4,6 +4,10 @@ import Menu from 'material-ui/svg-icons/navigation/menu';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 
 class ChannelContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.maxWidth = '960px';
+  }
   render () {
     const channelContentStyle = {
       globalMargin: {
@@ -12,20 +16,29 @@ class ChannelContainer extends React.Component {
       menuButton: {
         height: '100%',
         display: this.props.sidebarOpen ? 'none' : 'inline'
+      },
+      toolbar: {
+        justifyContent: 'center'
+      },
+      toolbarGroup: {
+        flex: '1',
+        maxWidth: this.maxWidth,
+        display: 'inline'
+      },
+      toolbarTitle: {
+        float: 'right'
       }
     };
     return (
       <div className="channel-content" style={channelContentStyle.globalMargin}>
         <div className="channel-content-container">
-          <Toolbar className="one">
-            <ToolbarGroup>
+          <Toolbar className="one" style={channelContentStyle.toolbar}>
+            <ToolbarGroup style={channelContentStyle.toolbarGroup}>
               <IconButton onTouchTap={this.props.toggleSidebar} style={channelContentStyle.menuButton}><Menu /></IconButton>
-            </ToolbarGroup>
-            <ToolbarGroup>
-              <ToolbarTitle text={this.props.currentChannel.name} />
+              <ToolbarTitle text={this.props.currentChannel.name} style={channelContentStyle.toolbarTitle}/>
             </ToolbarGroup>
           </Toolbar>
-          {this.props.children}
+          {React.cloneElement(this.props.children, {maxWidth: this.maxWidth})}
         </div>
       </div>
     );

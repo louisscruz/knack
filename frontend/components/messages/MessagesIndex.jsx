@@ -16,6 +16,7 @@ class MessagesIndex extends React.Component {
 
     this.updateMessage = this.updateMessage.bind(this);
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidUpdate() {
@@ -24,6 +25,10 @@ class MessagesIndex extends React.Component {
 
   updateMessage(e) {
     this.setState({message: e.target.value});
+  }
+
+  handleKeyDown(e) {
+    if (e.key === 'Enter') this.handleMessageSubmit(e);
   }
 
   handleMessageSubmit(e) {
@@ -68,23 +73,32 @@ class MessagesIndex extends React.Component {
         </div>
       );
     }
+    const styles = {
+      form: {
+        maxWidth: this.props.maxWidth
+      }
+    };
     return (
       <div className="messages-container">
         <div className="channel-messages" ref="channelMessages">
           {messages}
         </div>
         <div className="message-input-container">
-          <form onSubmit={this.handleMessageSubmit}>
-            <IconButton type="submit"><AddCircleOutline color={'white'}/></IconButton>
+          <form onSubmit={this.handleMessageSubmit} style={styles.form}>
             <TextField
               fullWidth={true}
               floatingLabelText={'New Message'}
               className="messages-input"
-              inputStyle={{color: pinkA200}}
+              textareaStyle={{color: pinkA200}}
               floatingLabelStyle={{ color: fullWhite }}
               value={this.state.message}
+              onKeyDown={this.handleKeyDown}
               onChange={this.updateMessage}
+              multiLine={true}
+              rows={1}
+              rowsMax={2}
             />
+            <IconButton type="submit"><AddCircleOutline color={'white'}/></IconButton>
           </form>
         </div>
       </div>
