@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TextField from 'material-ui/TextField';
-import AddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
-import IconButton from 'material-ui/IconButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
@@ -41,7 +39,9 @@ class MessagesIndex extends React.Component {
   }
 
   handleKeyDown(e) {
-    if (e.key === 'Enter') this.handleMessageSubmit(e);
+    if (e.key === 'Enter') {
+      this.handleMessageSubmit(e);
+    }
   }
 
   handleMessageSubmit(e) {

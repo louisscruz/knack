@@ -60,10 +60,24 @@ class ChannelSidebar extends React.Component {
   }
 
   render () {
+    const styles = {
+      toggleButton: {
+        position: 'absolute',
+        right: '0px'
+      },
+      title: {
+        margin: '4px 0'
+      }
+    };
     return (
       <Drawer open={this.props.sidebarOpen} className="sidebar">
-        <IconButton onTouchTap={this.props.toggleSidebar}><Clear /></IconButton>
-        <MenuItem><h1>kn@ck</h1></MenuItem>
+        <IconButton
+          onTouchTap={this.props.toggleSidebar}
+          style={styles.toggleButton}
+          >
+          <Clear />
+        </IconButton>
+        <h1 style={styles.title}>kn@ck</h1>
         <MenuItem
           className="account-menu"
           primaryText={this.props.currentUser.username}
