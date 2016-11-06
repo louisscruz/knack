@@ -32,7 +32,9 @@ class Root extends React.Component {
     if (!currentUser) {
       replace('/sign-in');
     } else {
-      this.requestAllChannels();
+      if (Object.keys(this.props.store.getState().channels).length < 1) {
+        this.requestAllChannels();
+      }
       this.requestChannel(nextState.params.channelName);
       this.setSocket(nextState.params.channelName);
     }
