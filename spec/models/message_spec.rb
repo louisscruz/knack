@@ -8,13 +8,14 @@ RSpec.describe Message, type: :model do
       password: 'password'
     )
     @user2 = User.create!(
-      username: 'test2',
-      email: 'test2@me.com',
+      username: 'new_username',
+      email: 'new_username@me.com',
       password: 'password'
     )
     @channel = Channel.create!(
       name: 'general',
-      purpose: 'purpose'
+      purpose: 'purpose',
+      creator_id: @user.id
     )
     ChannelMembership.create!(
       member_id: @user.id,

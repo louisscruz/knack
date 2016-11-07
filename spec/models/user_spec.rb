@@ -15,18 +15,22 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
+    @user = User.create!(username: 'mary_mack',
+                         email: 'test@me.com',
+                         password: 'abcdefgh')
     Channel::GLOBAL_SUBJECTS.each do |topic|
       Channel.create!(
         name: topic,
-        purpose: "This channel is for discussion about #{topic}"
+        purpose: "This channel is for discussion about #{topic}",
+        creator_id: @user.id
       )
     end
   end
 
   describe 'validations' do
     before(:each) do
-      @user = User.create!(username: 'mary_mack2',
-                           email: 'test2@me.com',
+      @user2 = User.create!(username: 'new_name',
+                           email: 'new@me.com',
                            password: 'abcdefgh')
     end
 
@@ -43,8 +47,8 @@ RSpec.describe User, type: :model do
   describe 'password encryption' do
     it 'does not save passwords to the database' do
       User.create!(
-        username: 'mary_mack',
-        email: 'test@me.com',
+        username: 'mary_mack3',
+        email: 'test3@me.com',
         password: 'abcdefgh'
       )
       user = User.find_by(username: 'mary_mack')
@@ -54,8 +58,8 @@ RSpec.describe User, type: :model do
     it 'encrypts the password using BCrypt' do
       expect(BCrypt::Password).to receive(:create)
       User.new(
-        username: 'mary_mack',
-        email: 'test@me.com',
+        username: 'mary_mack4',
+        email: 'test4@me.com',
         password: 'abcdefgh'
       )
     end
@@ -63,8 +67,8 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     before(:each) do
-      @user = User.create!(username: 'mary_mack2',
-                           email: 'test2@me.com',
+      @user5 = User.create!(username: 'mary_mack5',
+                           email: 'test5@me.com',
                            password: 'abcdefgh')
     end
     it { should have_many(:messages) }
@@ -73,7 +77,7 @@ RSpec.describe User, type: :model do
 
     it 'initializes with the proper channels' do
       channel_count = Channel::GLOBAL_SUBJECTS.length
-      expect(@user.channel_memberships.length).to eq(channel_count)
+      expect(@user5.channel_memberships.length).to eq(channel_count)
     end
   end
 end

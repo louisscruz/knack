@@ -9,6 +9,9 @@ export default (state = {}, action) => {
     case RECEIVE_CHANNEL:
       return action.channel;
     case RECEIVE_MESSAGE:
+      if (!newState.messages) {
+        newState.messages = {};
+      }
       newState.messages[action.message.id] = action.message;
       return newState;
     default:

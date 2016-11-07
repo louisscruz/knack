@@ -24,11 +24,13 @@ ActiveRecord::Schema.define(version: 20161103181721) do
   end
 
   create_table "channels", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",                           null: false
     t.text     "purpose"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_channels_on_name", unique: true, using: :btree
+    t.boolean  "direct_message", default: false
+    t.integer  "creator_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["name", "creator_id"], name: "index_channels_on_name_and_creator_id", unique: true, using: :btree
   end
 
   create_table "messages", force: :cascade do |t|

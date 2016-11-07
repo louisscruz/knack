@@ -15,3 +15,13 @@ export const getChannel = (id, success) => {
     success
   });
 };
+
+export const createChannel = (channel, success) => {
+  $.ajax({
+    url: '/api/channels',
+    type: 'POST',
+    dataType: 'json',
+    data: { channel },
+    success
+  });
+};

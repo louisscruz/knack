@@ -20,8 +20,10 @@ RSpec.describe ChannelMembership, type: :model do
     )
     channel = Channel.create!(
       name: 'general',
-      purpose: 'purpose'
+      purpose: 'purpose',
+      creator_id: user.id
     )
+    # Delete this once the channel model automatically creates the membership to the creator
     ChannelMembership.create!(
       member_id: user.id,
       channel_id: channel.id

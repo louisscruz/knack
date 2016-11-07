@@ -27,7 +27,8 @@ topics = Channel::GLOBAL_SUBJECTS
 topics.each do |topic|
   Channel.create!(
     name: topic,
-    purpose: "This channel is for discussion about #{topic}"
+    purpose: "This channel is for discussion about #{topic}",
+    creator_id: User.find_by(username: 'knack_bot').id
   )
 end
 

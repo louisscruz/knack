@@ -12,7 +12,8 @@
 class Channel < ApplicationRecord
   GLOBAL_SUBJECTS = %w(general ruby rails javascript html5 css sql).freeze
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :creator_id }
+  validates :direct_message, inclusion: { in: [true, false] }
   before_save :lowercase_name!
 
   has_many :memberships,
@@ -24,6 +25,15 @@ class Channel < ApplicationRecord
            foreign_key: :channel_id,
            primary_key: :id,
            class_name: 'Message'
+  belongs_to :creator,
+             foreign_key: :creator_id,
+             primary_key: :id,
+             class_name: 'User'
+
+  def self.new_direct_from_members(members, creator_id)
+    name = "dm#{creator_id}_#{members.sort.join('_')}"
+    Channel.new(name: name, direct_message: true, creator_id: creator_id)
+  end
 
   def lowercase_name!
     name.downcase!

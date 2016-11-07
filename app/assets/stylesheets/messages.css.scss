@@ -9,6 +9,7 @@
   .channel-messages {
     flex: 1;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     .message {
       max-width: 720px;
       margin: 8px auto;
