@@ -18,7 +18,7 @@ class ChannelSidebar extends React.Component {
     super(props);
     this.state = {
       menuOpen: false,
-      messageModalOpen: true
+      messageModalOpen: false
     };
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
