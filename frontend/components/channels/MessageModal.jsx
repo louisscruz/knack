@@ -65,14 +65,14 @@ class MessageModal extends React.Component {
 
   fetchUsers(value) {
     const that = this;
-    console.log(this.state.users);
+    if (value.length === 0) return;
     $.ajax({
       url: 'api/users/search',
       type: 'GET',
       dataType: 'json',
       data: { value },
       success: function(res) {
-        const usernames = res.map(el => el.username);
+        let usernames = res.map(el => el.username);
         that.setState({ users: usernames });
       }
     });
