@@ -46,7 +46,7 @@ class MessageModal extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let members = [this.props.currentUser.username, ...this.state.members];
-    const name = members.sort().join('_');
+    const name = members.sort().map(el => `@${el}`).join('_');
     const messageKeys = Object.keys(this.props.directMessages);
     for (let i = 0; i < messageKeys.length; i++) {
       if (this.props.directMessages[messageKeys[i]].name === name) {
@@ -57,10 +57,11 @@ class MessageModal extends React.Component {
     }
     const channel = {
       creator_id: this.props.currentUser.id,
-      members: ['guest']
+      members: this.state.members
     };
     this.props.postDirectMessage(channel);
     this.props.closeModal();
+    this.setState({members: []});
   }
 
   fetchUsers(value) {

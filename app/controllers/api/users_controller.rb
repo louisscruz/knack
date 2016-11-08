@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
   end
 
   def search
-    @users = User.where('username LIKE ?', "%#{params[:value]}").limit(10)
+    @users = User.where('username LIKE ?', "%#{params[:value]}%").limit(10)
   end
 
   private

@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :username, :password_digest, :email, :session_token, presence: true
   validates :username, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
+  validate :username_is_valid
   after_create :ensure_subscribed_to_channels
 
   has_many :channel_memberships,
@@ -72,5 +73,10 @@ class User < ApplicationRecord
         channel_id: channel.id
       )
     end
+  end
+
+  def username_is_valid
+    return unless username.split('').any? { |x| x == '@' }
+    errors[:username] << 'Name may not contain the @ symbol'
   end
 end

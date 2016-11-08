@@ -18,6 +18,16 @@ User.create!(
   password: 'password'
 )
 
+SUPERSTAR_USERS = %w(robert_martin alan_turing mark_hurd marissa_mayer steve_jobs jack_dorsey elon_musk jeff_bezos steve_wozniak linus_torvalds donald_knuth brian_kernighan richard_stallman jack_carmack mark_zuckerberg).freeze
+
+SUPERSTAR_USERS.each do |username|
+  User.create!(
+    username: username,
+    email: "#{username}@gmail.com",
+    password: 'password'
+  )
+end
+
 p "Successfully generated #{User.count} users"
 
 p 'Generating channels'
@@ -50,13 +60,12 @@ p "Generated #{ChannelMembership.count} channel memberships"
 
 p 'Generating messages'
 
-bot = User.find_by(username: 'knack_bot')
-
 300.times do
+  random_author = User.order('RANDOM()').limit(1).first
   random_channel_id = (1...Channel.count).to_a.sample
   Message.create!(
     body: Faker::StarWars.quote,
-    author_id: bot.id,
+    author_id: random_author.id,
     channel_id: random_channel_id
   )
 end

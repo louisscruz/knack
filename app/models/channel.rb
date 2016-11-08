@@ -34,26 +34,23 @@ class Channel < ApplicationRecord
              class_name: 'User'
 
   def self.create_direct_from_members(members, current_user)
-    name = members.push(current_user.username).uniq.sort.join('_')
+    members.map! { |x| "@#{x}" }
+    name = members.push("@#{current_user.username}").uniq.sort.join('_')
     channel = Channel.new(
       name: name,
       direct_message: true,
       creator_id: current_user.id
     )
     if channel.save
-      members.map { |name| User.find_by(username: name)}.each do |member|
-        # Prohibit self-talking channels
+      members.map! { |x| x.delete!('@') }
+      members.map { |x| User.find_by(username: x) }.each do |subscribee|
         ChannelMembership.create(
-          member_id: member.id,
+          member_id: subscribee.id,
           channel_id: channel.id
         )
       end
     end
     channel
-  end
-
-  def handle_subscriptions
-
   end
 
   def lowercase_name!

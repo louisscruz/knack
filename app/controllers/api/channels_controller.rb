@@ -21,6 +21,9 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
+    if @channel.nil?
+      render json: {}, status: 404
+    end
   end
 
   private

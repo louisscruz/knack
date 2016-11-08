@@ -29,7 +29,8 @@ export const createChannel = (channel, success) => {
 };
 
 export const convertDirectMessageName = (name, currentUser) => {
-  let people = name.split('_');
+  let people = name.split('_@');
+  people = people.map(el => el.replace('@', ''));
   people.splice(people.indexOf(currentUser.username), 1);
   return people.join(', ');
 };
