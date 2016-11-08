@@ -6,6 +6,7 @@ json.set! :messages do
   @channel.messages.each do |message|
     json.set! message.id do
       json.body message.body
+      json.created_at message.created_at
       json.set! :author do
         json.id message.author.id
         json.username message.author.username

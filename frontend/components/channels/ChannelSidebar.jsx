@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter, hashHistory, Link } from 'react-router';
+import ScrollArea from 'react-scrollbar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
@@ -118,7 +119,7 @@ class ChannelSidebar extends React.Component {
           </MenuItem>
           <Divider />
           <p className="list-title">Channels</p>
-          <div className="channels-container">
+          <ScrollArea className="channels-container">
             {
               Object.keys(this.props.channels).map(id => {
                 return (
@@ -137,10 +138,10 @@ class ChannelSidebar extends React.Component {
                 );
               })
             }
-          </div>
+          </ScrollArea>
           <Divider />
           <p className="list-title">Direct Messages <IconButton onTouchTap={this.toggleMessageModal}><AddCircleOutline color={fullWhite}/></IconButton></p>
-          <div className="channels-container">
+          <ScrollArea className="channels-container">
             {
               Object.keys(this.props.directMessages).map(id => {
                 return (
@@ -159,7 +160,7 @@ class ChannelSidebar extends React.Component {
                 );
               })
             }
-          </div>
+          </ScrollArea>
         </Drawer>
       </aside>
     );
