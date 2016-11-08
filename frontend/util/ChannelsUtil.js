@@ -1,6 +1,8 @@
-export const getChannels = success => {
+export const getChannels = (directMessage, success) => {
+  let url = '/api/channels';
+  if (directMessage) url = url.concat('?direct_message=true');
   $.ajax({
-    url: '/api/channels',
+    url: url,
     type: 'GET',
     dataType: 'json',
     success
@@ -24,4 +26,10 @@ export const createChannel = (channel, success) => {
     data: { channel },
     success
   });
+};
+
+export const convertDirectMessageName = (name, currentUser) => {
+  let people = name.split('_');
+  people.splice(people.indexOf(currentUser.username), 1);
+  return people.join(', ');
 };

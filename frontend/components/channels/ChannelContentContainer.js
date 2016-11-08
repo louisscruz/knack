@@ -4,6 +4,7 @@ import { toggleSidebar } from '../../actions/SidebarActions';
 
 const mapStateToProps = state => ({
   currentChannel: state.currentChannel,
+  currentUser: state.session.currentUser,
   sidebarOpen: state.sidebarOpen
 });
 

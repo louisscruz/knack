@@ -10,7 +10,7 @@ import AddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
 import Clear from 'material-ui/svg-icons/content/clear';
 import IconButton from 'material-ui/IconButton';
 import { fullWhite } from 'material-ui/styles/colors';
-
+import { convertDirectMessageName } from '../../util/ChannelsUtil';
 import MessageModalContainer from './MessageModalContainer';
 
 class ChannelSidebar extends React.Component {
@@ -140,6 +140,26 @@ class ChannelSidebar extends React.Component {
           </div>
           <Divider />
           <p className="list-title">Direct Messages <IconButton onTouchTap={this.toggleMessageModal}><AddCircleOutline color={fullWhite}/></IconButton></p>
+          <div className="channels-container">
+            {
+              Object.keys(this.props.directMessages).map(id => {
+                return (
+                  <Link
+                    to={`/messages/${this.props.directMessages[id].name}`}
+                    key={id}
+                    className="channel-item"
+                    activeClassName="active"
+                    >
+                    <MenuItem
+                      key={id}
+                      primaryText={convertDirectMessageName(this.props.directMessages[id].name, this.props.currentUser)}
+                      style={{minHeight: '32px', lineHeight: '32px'}}
+                      />
+                  </Link>
+                );
+              })
+            }
+          </div>
         </Drawer>
       </aside>
     );

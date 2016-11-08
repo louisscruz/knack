@@ -6,6 +6,7 @@ import { toggleSidebar } from '../../actions/SidebarActions';
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   channels: state.channels,
+  directMessages: state.directMessages,
   sidebarOpen: state.sidebarOpen
 });
 

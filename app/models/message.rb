@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id         :integer          not null, primary key
+#  body       :text             not null
+#  author_id  :integer          not null
+#  channel_id :integer          not null
+#  edited     :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Message < ApplicationRecord
   after_commit { MessageRelayJob.perform_later(self, self.channel) }
   validates :body, :author_id, :channel_id, presence: true

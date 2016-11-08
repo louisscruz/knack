@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import MessageModal from './MessageModal';
-import { postChannel } from '../../actions/ChannelActions';
+import { postDirectMessage } from '../../actions/ChannelActions';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  directMessages: state.directMessages
 });
 
 const mapDispatchToProps = dispatch => ({
-  postChannel: channel => dispatch(postChannel(channel))
+  postDirectMessage: channel => dispatch(postDirectMessage(channel))
 });
 
 export default connect(

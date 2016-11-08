@@ -12,7 +12,7 @@ import SignUpContainer from './auth/SignUpContainer';
 import ChannelContainer from './channels/ChannelContainer';
 import MessagesIndexContainer from './messages/MessagesIndexContainer';
 
-import { fetchChannels, fetchChannel } from '../actions/ChannelActions';
+import { fetchChannels, fetchDirectMessages, fetchChannel } from '../actions/ChannelActions';
 import { receiveMessage } from '../actions/MessageActions';
 
 class Root extends React.Component {
@@ -35,6 +35,7 @@ class Root extends React.Component {
       if (Object.keys(this.props.store.getState().channels).length < 1) {
         this.requestAllChannels();
       }
+      this.requestDirectMessages();
       this.requestChannel(nextState.params.channelName);
       this.setSocket(nextState.params.channelName);
     }
@@ -42,6 +43,10 @@ class Root extends React.Component {
 
   requestAllChannels() {
     this.props.store.dispatch(fetchChannels());
+  }
+
+  requestDirectMessages() {
+    this.props.store.dispatch(fetchDirectMessages());
   }
 
   requestChannel(name) {

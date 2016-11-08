@@ -23,11 +23,6 @@ RSpec.describe ChannelMembership, type: :model do
       purpose: 'purpose',
       creator_id: user.id
     )
-    # Delete this once the channel model automatically creates the membership to the creator
-    ChannelMembership.create!(
-      member_id: user.id,
-      channel_id: channel.id
-    )
   end
 
   describe 'validations' do

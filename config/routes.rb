@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resources :channels, only: [:index, :create, :show, :destroy], param: :name
     resources :messages, only: [:create, :update, :destroy]
+    get '/users/search', to: 'users#search'
   end
+
 
   get '*all', to: 'static_pages#root', format: false
 end

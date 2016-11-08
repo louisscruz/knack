@@ -2,11 +2,13 @@
 #
 # Table name: channels
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  purpose    :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :integer          not null, primary key
+#  name           :string           not null
+#  purpose        :text
+#  direct_message :boolean          default(FALSE)
+#  creator_id     :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 require 'rails_helper'
@@ -17,7 +19,7 @@ RSpec.describe Channel, type: :model do
       @user = User.create!(username: 'mary_mack',
                            email: 'test@me.com',
                            password: 'abcdefgh')
-      Channel.create!(
+      @channel = Channel.create!(
         name: 'general',
         purpose: 'purpose',
         creator_id: @user.id
@@ -35,6 +37,16 @@ RSpec.describe Channel, type: :model do
         creator_id: @user.id
       )
       expect(channel.name).to eq('newchannel')
+    end
+
+    it 'should add creator as member on create' do
+      new_channel = Channel.new(
+        name: 'new_channel',
+        purpose: 'new purpose',
+        creator_id: @user.id
+      )
+      ChannelMembership.should_receive(:create!)
+      new_channel.save
     end
   end
 

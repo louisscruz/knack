@@ -8,6 +8,10 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def search
+    @users = User.where('username LIKE ?', "%#{params[:value]}")
+  end
+
   private
 
   def user_params

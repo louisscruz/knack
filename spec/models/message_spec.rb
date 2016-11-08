@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id         :integer          not null, primary key
+#  body       :text             not null
+#  author_id  :integer          not null
+#  channel_id :integer          not null
+#  edited     :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
@@ -16,10 +29,6 @@ RSpec.describe Message, type: :model do
       name: 'general',
       purpose: 'purpose',
       creator_id: @user.id
-    )
-    ChannelMembership.create!(
-      member_id: @user.id,
-      channel_id: @channel.id
     )
     Message.create!(
       body: 'this is a test body',

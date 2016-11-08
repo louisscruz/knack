@@ -1,6 +1,7 @@
 json.name @channel.name
 json.purpose @channel.purpose
 json.id @channel.id
+json.directMessage @channel.direct_message
 json.set! :messages do
   @channel.messages.each do |message|
     json.set! message.id do

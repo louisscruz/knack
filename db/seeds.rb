@@ -38,6 +38,7 @@ p 'Generating channel memberships'
 
 User.all.each do |user|
   Channel.all.each do |channel|
+    next if user.id == channel.creator_id
     ChannelMembership.create!(
       member_id: user.id,
       channel_id: channel.id

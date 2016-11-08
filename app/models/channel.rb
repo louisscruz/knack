@@ -2,11 +2,13 @@
 #
 # Table name: channels
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  purpose    :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :integer          not null, primary key
+#  name           :string           not null
+#  purpose        :text
+#  direct_message :boolean          default(FALSE)
+#  creator_id     :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 class Channel < ApplicationRecord
@@ -15,6 +17,7 @@ class Channel < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :creator_id }
   validates :direct_message, inclusion: { in: [true, false] }
   before_save :lowercase_name!
+  after_create :subscribe_creator
 
   has_many :memberships,
            foreign_key: :member_id,
@@ -30,12 +33,37 @@ class Channel < ApplicationRecord
              primary_key: :id,
              class_name: 'User'
 
-  def self.new_direct_from_members(members, creator_id)
-    name = "dm#{creator_id}_#{members.sort.join('_')}"
-    Channel.new(name: name, direct_message: true, creator_id: creator_id)
+  def self.create_direct_from_members(members, current_user)
+    name = members.push(current_user.username).uniq.sort.join('_')
+    channel = Channel.new(
+      name: name,
+      direct_message: true,
+      creator_id: current_user.id
+    )
+    if channel.save
+      members.map { |name| User.find_by(username: name)}.each do |member|
+        # Prohibit self-talking channels
+        ChannelMembership.create(
+          member_id: member.id,
+          channel_id: channel.id
+        )
+      end
+    end
+    channel
+  end
+
+  def handle_subscriptions
+
   end
 
   def lowercase_name!
     name.downcase!
+  end
+
+  def subscribe_creator
+    ChannelMembership.create!(
+      member_id: creator_id,
+      channel_id: id
+    )
   end
 end
