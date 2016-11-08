@@ -20,7 +20,7 @@ class Channel < ApplicationRecord
   after_create :subscribe_creator
 
   has_many :memberships,
-           foreign_key: :member_id,
+           foreign_key: :channel_id,
            primary_key: :id,
            class_name: 'ChannelMembership'
   has_many :members, through: :memberships

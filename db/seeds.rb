@@ -18,9 +18,7 @@ User.create!(
   password: 'password'
 )
 
-SUPERSTAR_USERS = %w(robert_martin alan_turing mark_hurd marissa_mayer steve_jobs jack_dorsey elon_musk jeff_bezos steve_wozniak linus_torvalds donald_knuth brian_kernighan richard_stallman jack_carmack mark_zuckerberg).freeze
-
-SUPERSTAR_USERS.each do |username|
+User::SUPERSTAR_USERS.each do |username|
   User.create!(
     username: username,
     email: "#{username}@gmail.com",
