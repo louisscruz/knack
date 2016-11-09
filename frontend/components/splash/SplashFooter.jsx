@@ -1,15 +1,27 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import { grey800 } from 'material-ui/styles/colors';
 
-const SplashFooter = (state) => (
+const styles = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '64px',
+  backgroundColor: grey800
+};
+
+const SplashFooter = ({activated}) => (
   <footer>
     <Paper
       zDepth={1}
       rounded={false}
-      style={{height: 64, backgroundColor: grey800}}>
+      style={styles}>
+      <Link to="/sign-up">
+        <RaisedButton label="Sign Up" primary={activated}/>
+      </Link>
     </Paper>
   </footer>
 );

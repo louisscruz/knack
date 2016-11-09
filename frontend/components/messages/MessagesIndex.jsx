@@ -11,12 +11,10 @@ import MessagesIndexItem from './MessagesIndexItem';
 class MessagesIndex extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       message: '',
       valid: false
     };
-
     this.updateMessage = this.updateMessage.bind(this);
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -59,8 +57,6 @@ class MessagesIndex extends React.Component {
   scrollToBottom() {
     const height = this.refs.channelMessages.scrollHeight;
     ReactDOM.findDOMNode(this.refs.channelMessages).scrollTop = height;
-    // console.log(this.refs.channelMessages);
-    // this.refs.channelMessages.scrollArea.scrollBottom();
   }
 
   render () {
@@ -107,7 +103,7 @@ class MessagesIndex extends React.Component {
               floatingLabelText={'New Message'}
               className="messages-input"
               textareaStyle={{color: pinkA200}}
-              floatingLabelStyle={{ color: fullWhite }}
+              floatingLabelStyle={{color: fullWhite}}
               value={this.state.message}
               onKeyDown={this.handleKeyDown}
               onChange={this.updateMessage}

@@ -1,11 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import theme from './Theme';
 
 import App from './App';
+import SplashHome from './splash/SplashHome';
 import SplashContainer from './splash/SplashContainer';
 import SignInContainer from './auth/SignInContainer';
 import SignUpContainer from './auth/SignUpContainer';
@@ -85,6 +86,7 @@ class Root extends React.Component {
           <Router history={hashHistory}>
             <Route component={App}>
               <Route path="/" component={SplashContainer} onEnter={ this._redirectIfLoggedIn.bind(this) }>
+                <IndexRoute component={SplashHome} />
                 <Route path="/sign-in" component={SignInContainer} />
                 <Route path="/sign-up" component={SignUpContainer} />
               </Route>

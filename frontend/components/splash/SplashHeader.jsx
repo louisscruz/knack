@@ -9,8 +9,7 @@ const SplashHeader = () => (
       title="kn@ck"
       iconElementLeft={<span></span>}
       iconElementRight={<FlatButton label="Sign In" href="/#/sign-in" />}
-      onTitleTouchTap={() => hashHistory.push('/')}
-      zDepth={1500}
+      zDepth={1}
       style={{
         backgroundColor: 'transparent'
       }}
