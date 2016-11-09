@@ -3,6 +3,7 @@ import IconButton from 'material-ui/IconButton';
 import Menu from 'material-ui/svg-icons/navigation/menu';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { convertDirectMessageName } from '../../util/ChannelsUtil';
+import { grey800 } from 'material-ui/styles/colors';
 
 class ChannelContainer extends React.Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class ChannelContainer extends React.Component {
         display: this.props.sidebarOpen ? 'none' : 'inline'
       },
       toolbar: {
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
       },
       toolbarGroup: {
         flex: '1',
@@ -27,7 +29,8 @@ class ChannelContainer extends React.Component {
         display: 'inline'
       },
       toolbarTitle: {
-        float: 'right'
+        float: 'right',
+        color: grey800
       }
     };
     let name = this.props.currentChannel.name;
@@ -37,7 +40,7 @@ class ChannelContainer extends React.Component {
     return (
       <div className="channel-content" style={channelContentStyle.globalMargin}>
         <div className="channel-content-container">
-          <Toolbar className="one" style={channelContentStyle.toolbar}>
+          <Toolbar className="channel-header" style={channelContentStyle.toolbar}>
             <ToolbarGroup style={channelContentStyle.toolbarGroup}>
               <IconButton onTouchTap={this.props.toggleSidebar} style={channelContentStyle.menuButton}><Menu /></IconButton>
               <ToolbarTitle text={name} style={channelContentStyle.toolbarTitle}/>
