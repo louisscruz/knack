@@ -35,7 +35,9 @@ class Message < ApplicationRecord
     if channel.name != 'general' && Channel::GLOBAL_SUBJECTS.include?(channel.name)
       topic = channel.name
     else
-      topic = Channel::GLOBAL_SUBJECTS.sample
+      begin
+        topic = Channel::GLOBAL_SUBJECTS.sample
+      end while topic == 'general'
     end
     structure = (1..3).to_a.sample
     case structure
