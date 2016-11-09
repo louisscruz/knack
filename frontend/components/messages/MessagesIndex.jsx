@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { pinkA200, fullWhite } from 'material-ui/styles/colors';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import merge from 'lodash/merge';
 
 import MessagesIndexItem from './MessagesIndexItem';
@@ -95,7 +96,12 @@ class MessagesIndex extends React.Component {
           className="channel-messages"
           ref="channelMessages">
           <div className="padder">
-            {messages}
+            <ReactCSSTransitionGroup
+              transitionName="example"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}>
+              {messages}
+            </ReactCSSTransitionGroup>
           </div>
         </div>
         <div className="message-input-container">

@@ -3,7 +3,7 @@ json.purpose @channel.purpose
 json.id @channel.id
 json.directMessage @channel.direct_message
 json.set! :messages do
-  @channel.messages.each do |message|
+  @channel.messages.recent.each do |message|
     json.set! message.id do
       json.body message.body
       json.created_at message.created_at

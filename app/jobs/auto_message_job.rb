@@ -1,4 +1,4 @@
-class AutoDirectMessageJob < ApplicationJob
+class AutoMessageJob < ApplicationJob
   queue_as :default
 
   def perform(author, channel)

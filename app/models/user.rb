@@ -46,6 +46,10 @@ class User < ApplicationRecord
     token
   end
 
+  def self.random_superstar
+    User.find_by(username: SUPERSTAR_USERS.sample)
+  end
+
   def ensure_session_token
     self.session_token = self.class.generate_session_token
   end

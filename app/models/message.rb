@@ -15,6 +15,7 @@ class Message < ApplicationRecord
   after_commit { MessageRelayJob.perform_later(self, self.channel) }
   after_save :handle_random_message
   validates :body, :author_id, :channel_id, presence: true
+  scope :recent, -> { order('id DESC').limit(20) }
 
   before_validation :validates_membership
 
@@ -75,7 +76,7 @@ class Message < ApplicationRecord
     members = self.channel.members.shuffle #Make this more efficient by selecting a random index and then looping through all members
     members.each do |member|
       if User::SUPERSTAR_USERS.include?(member.username)
-        AutoDirectMessageJob.set(wait: 1.seconds).perform_later(member, self.channel)
+        AutoMessageJob.set(wait: 1.seconds).perform_later(member, self.channel)
         return
       end
     end

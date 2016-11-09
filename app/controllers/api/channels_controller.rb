@@ -23,6 +23,12 @@ class Api::ChannelsController < ApplicationController
   def show
     if @channel.nil?
       render json: {}, status: 404
+    elsif !@channel.direct_message
+      offset_start = 3
+      3.times do |i|
+        offset_start = (i + 1) * (1 + rand(offset_start))
+        AutoMessageJob.set(wait: offset_start.seconds).perform_later(User.random_superstar, @channel)
+      end
     end
   end
 

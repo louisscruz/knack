@@ -19,6 +19,31 @@
       max-width: 720px;
       margin: 8px auto;
     }
+    .example-enter {
+      opacity: 0.01;
+      -webkit-box-shadow: 0px 0px 75px 14px rgba(0,0,0,0.5);
+      -moz-box-shadow: 0px 0px 75px 14px rgba(0,0,0,0.5);
+      box-shadow: 0px 0px 75px 14px rgba(0,0,0,0.5);
+      color: white !important;
+      background-color: $primary !important;
+    }
+
+    .example-enter.example-enter-active {
+      opacity: 1;
+      -webkit-box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.5);
+      -moz-box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.5);
+      box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.5);
+      transition: all 500ms ease-in-out;
+    }
+
+    .example-leave {
+      opacity: 1;
+    }
+
+    .example-leave.example-leave-active {
+      opacity: 0.01;
+      transition: opacity 300ms ease-in;
+    }
   }
   .message-input-container {
     height: 96px;
