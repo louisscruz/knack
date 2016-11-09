@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TimeAgo from 'react-timeago';
 import TextField from 'material-ui/TextField';
-import Avatar from 'material-ui/Avatar';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { pinkA200, fullWhite } from 'material-ui/styles/colors';
 import merge from 'lodash/merge';
+
+import MessagesIndexItem from './MessagesIndexItem';
 
 class MessagesIndex extends React.Component {
   constructor(props) {
@@ -71,29 +70,11 @@ class MessagesIndex extends React.Component {
     if (this.props.currentChannel && this.props.messages) {
       const keys = Object.keys(this.props.messages);
       if (keys.length > 0) {
-        let avatar = name => {
-          return (
-            <Avatar>{name[0]}</Avatar>
-          );
-        };
-        let subtitle = date => {
-          return (
-            <TimeAgo date={date} />
-          );
-        };
         messages = (
           Object.keys(this.props.messages)
-                .map(key => (
-                  <Card key={key} className="message">
-                    <CardHeader
-                      title={this.props.messages[key].author.username}
-                      subtitle={subtitle(this.props.messages[key].created_at)}
-                      avatar={avatar(this.props.messages[key].author.username)} />
-                    <CardText>
-                      {this.props.messages[key].body}
-                    </CardText>
-                  </Card>
-                ))
+                .map(key => <MessagesIndexItem
+                              currentUser={this.props.currentUser}
+                              message={this.props.messages[key]} />)
         );
       }
     } else {
@@ -115,8 +96,7 @@ class MessagesIndex extends React.Component {
       <div className="messages-container">
         <div
           className="channel-messages"
-          ref="channelMessages"
-        >
+          ref="channelMessages">
           {messages}
         </div>
         <div className="message-input-container">
