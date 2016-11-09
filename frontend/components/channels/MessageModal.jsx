@@ -51,7 +51,7 @@ class MessageModal extends React.Component {
     for (let i = 0; i < messageKeys.length; i++) {
       if (this.props.directMessages[messageKeys[i]].name === name) {
         this.setState({members: []});
-        this.props.router.push(`/messages/${name}`);
+        this.routeToChannel(name);
         return this.props.closeModal();
       }
     }
@@ -62,6 +62,10 @@ class MessageModal extends React.Component {
     this.props.postDirectMessage(channel);
     this.props.closeModal();
     this.setState({members: []});
+  }
+
+  routeToChannel(name) {
+    this.props.router.push(`/messages/${name}`);
   }
 
   fetchUsers(value) {
