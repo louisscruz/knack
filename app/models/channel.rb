@@ -12,7 +12,7 @@
 #
 
 class Channel < ApplicationRecord
-  GLOBAL_SUBJECTS = %w(general ruby rails javascript html5 css sql).freeze
+  GLOBAL_SUBJECTS = %w(general ruby rails javascript html5 css sql react redux angular1 angular2).freeze
 
   validates :name, presence: true, uniqueness: { scope: :creator_id }
   validates :direct_message, inclusion: { in: [true, false] }

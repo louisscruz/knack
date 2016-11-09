@@ -40,11 +40,14 @@ class Message < ApplicationRecord
         topic = Channel::GLOBAL_SUBJECTS.sample
       end while topic == 'general'
     end
+    if [true, false, false, false, false].sample
+      phrases << "I'm pretty surprised..."
+    end
     structure = (1..3).to_a.sample
     case structure
     when 1
       phrases.push(
-        'i can hardly believe how knowledgeable Louis is about',
+        'I can hardly believe how much Louis knows about',
         topic
       )
     when 2
@@ -55,10 +58,13 @@ class Message < ApplicationRecord
       )
     when 3
       phrases.push(
-        'just seeing what Louis can do with',
+        'check out what Louis can make with',
         topic,
-        'i really wish I had enough money to hire him right now!'
+        '!'
       )
+      if (1..10).to_a.sample === 1
+        phrases.push('I wish I had enough money to hire Louis right now!')
+      end
     end
     phrases.join(' ')
   end

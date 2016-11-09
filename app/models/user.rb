@@ -12,7 +12,7 @@
 #
 
 class User < ApplicationRecord
-  SUPERSTAR_USERS = %w(robert_martin alan_turing mark_hurd marissa_mayer steve_jobs jack_dorsey elon_musk jeff_bezos steve_wozniak linus_torvalds donald_knuth brian_kernighan richard_stallman jack_carmack mark_zuckerberg).freeze
+  SUPERSTAR_USERS = %w(robert_martin alan_turing PAUL_GRAHAM mark_hurd MarissaMayer steve_jobs jack_dorsey elon_musk jeff_bezos steve_wozniak linus_torvalds DonaldKnuth brian_kernighan richard_stallman JackCarmack mark_zuckerberg AdaLovelace DHH charles_leiserson, CliffordStein, RONALDRIVEST, Thomas_Cormen).freeze
 
   attr_reader :password
 

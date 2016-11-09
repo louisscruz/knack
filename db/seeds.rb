@@ -59,7 +59,7 @@ p "Generated #{ChannelMembership.count} channel memberships"
 p 'Generating messages'
 
 300.times do
-  random_author = User.order('RANDOM()').limit(1).first
+  random_author = User.where.not(username: 'louisscruz').order('RANDOM()').limit(1).first
   random_channel = Channel.order('RANDOM()').limit(1).first
   Message.create!(
     body: Message.random_message(random_channel),
