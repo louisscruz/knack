@@ -12,7 +12,6 @@ export const formInvalid = function() {
   return invalid;
 };
 
-
 export const getErrors = function(field) {
   const errors = this.state[field].errors;
   let messages = [];
@@ -35,8 +34,31 @@ export const setTouched = function(field) {
 export const setErrors = function(field) {
   let newState = merge({}, this.state);
   newState[field].errors.required.present = false;
+  const value = newState[field].value;
   if (this.state[field].value.length === 0) {
     newState[field].errors.required.present = true;
   }
+  if (this.__proto__.constructor.name === 'SignUp') {
+    if (field === 'email') {
+      if (!/\S+@\S+\.\S+/.test(value) && value.length > 0) {
+        newState[field].errors.format.present = true;
+      } else {
+        newState[field].errors.format.present = false;
+      }
+    } else if (field === 'password') {
+      if (value.length > 0 && value.length < 8) {
+        newState[field].errors.minlength.present = true;
+      } else {
+        newState[field].errors.minlength.present = false;
+      }
+    } else if (field === 'passwordConfirmation') {
+      if (value.length > 0 && value !== newState.password.value) {
+        newState[field].errors.unequal.present = true;
+      } else {
+        newState[field].errors.unequal.present = false;
+      }
+    }
+  }
+
   this.setState(newState);
 };

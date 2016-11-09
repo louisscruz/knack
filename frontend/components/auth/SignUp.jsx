@@ -32,6 +32,10 @@ class SignUp extends React.Component {
           required: {
             present: true,
             message: 'Email is required.'
+          },
+          format: {
+            present: true,
+            message: 'Email is invalid'
           }
         }
       },
@@ -42,6 +46,10 @@ class SignUp extends React.Component {
           required: {
             present: true,
             message: 'Password is required.'
+          },
+          minlength: {
+            present: true,
+            message: 'Password must be at least 8 characters'
           }
         }
       },
@@ -52,6 +60,10 @@ class SignUp extends React.Component {
           required: {
             present: true,
             message: 'Password confirmation is required.'
+          },
+          unequal: {
+            present: false,
+            message: 'Password confirmation must match password'
           }
         }
       }
@@ -59,6 +71,7 @@ class SignUp extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
+
 
   componentDidUpdate() {
     this.redirectIfLoggedIn();
