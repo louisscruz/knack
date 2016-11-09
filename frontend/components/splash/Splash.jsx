@@ -17,7 +17,6 @@ class Splash extends React.Component {
 
   render () {
     const childrenWithProps = React.cloneElement(this.props.children, { toggleActivated: this.toggleActivated });
-    console.log(childrenWithProps);
     return (
       <div className="splash">
         <SplashHeader />
