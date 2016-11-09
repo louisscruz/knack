@@ -94,7 +94,9 @@ class MessagesIndex extends React.Component {
         <div
           className="channel-messages"
           ref="channelMessages">
-          {messages}
+          <div className="padder">
+            {messages}
+          </div>
         </div>
         <div className="message-input-container">
           <form onSubmit={this.handleMessageSubmit} style={styles.form}>
