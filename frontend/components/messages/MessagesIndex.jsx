@@ -73,6 +73,7 @@ class MessagesIndex extends React.Component {
         messages = (
           Object.keys(this.props.messages)
                 .map(key => <MessagesIndexItem
+                              key={key}
                               currentUser={this.props.currentUser}
                               message={this.props.messages[key]} />)
         );
