@@ -28,13 +28,36 @@ class Message < ApplicationRecord
              primary_key: :id,
              class_name: 'Channel'
 
-  def self.generate_random_message
-    topics = %w(ruby rails javascript html5 css3 typescript sql).freeze
-    topic = topics.sample
-    structures = [
-      'wow, I wish I had enough money to hire Louis right now'
-    ]
-    structures[0]
+  def self.random_message(channel)
+    exclamations = %w(whoa yikes yippee wow hurrah hurray yeah hip-hip-hooray Jeez wowza).freeze
+    phrases = []
+    phrases.push(exclamations.sample) if [true, false].sample
+    if channel.name != 'general' && Channel::GLOBAL_SUBJECTS.include?(channel.name)
+      topic = channel.name
+    else
+      topic = Channel::GLOBAL_SUBJECTS.sample
+    end
+    structure = (1..3).to_a.sample
+    case structure
+    when 1
+      phrases.push(
+        'i can hardly believe how knowledgeable Louis is about',
+        topic
+      )
+    when 2
+      phrases.push(
+        'if I have any questions about',
+        topic,
+        "I'll be sure to ask Louis!"
+      )
+    when 3
+      phrases.push(
+        'just seeing what Louis can do with',
+        topic,
+        'i really wish I had enough money to hire him right now!'
+      )
+    end
+    phrases.join(' ')
   end
 
   def validates_membership

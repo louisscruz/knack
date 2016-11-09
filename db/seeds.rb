@@ -60,11 +60,11 @@ p 'Generating messages'
 
 300.times do
   random_author = User.order('RANDOM()').limit(1).first
-  random_channel_id = (1...Channel.count).to_a.sample
+  random_channel = Channel.order('RANDOM()').limit(1).first
   Message.create!(
-    body: Faker::StarWars.quote,
+    body: Message.random_message(random_channel),
     author_id: random_author.id,
-    channel_id: random_channel_id
+    channel_id: random_channel.id
   )
 end
 
