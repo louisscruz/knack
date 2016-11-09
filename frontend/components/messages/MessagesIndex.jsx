@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TimeAgo from 'react-timeago';
-import ScrollArea from 'react-scrollbar';
 import TextField from 'material-ui/TextField';
 import Avatar from 'material-ui/Avatar';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -61,6 +60,8 @@ class MessagesIndex extends React.Component {
   scrollToBottom() {
     const height = this.refs.channelMessages.scrollHeight;
     ReactDOM.findDOMNode(this.refs.channelMessages).scrollTop = height;
+    // console.log(this.refs.channelMessages);
+    // this.refs.channelMessages.scrollArea.scrollBottom();
   }
 
   render () {
@@ -112,11 +113,12 @@ class MessagesIndex extends React.Component {
     };
     return (
       <div className="messages-container">
-        <ScrollArea
+        <div
           className="channel-messages"
-          speed={0.8}>
+          ref="channelMessages"
+        >
           {messages}
-        </ScrollArea>
+        </div>
         <div className="message-input-container">
           <form onSubmit={this.handleMessageSubmit} style={styles.form}>
             <TextField
