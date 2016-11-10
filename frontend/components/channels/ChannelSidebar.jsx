@@ -118,7 +118,7 @@ class ChannelSidebar extends React.Component {
             </Popover>
           </MenuItem>
           <Divider />
-          <p className="list-title">Channels</p>
+          <p className="list-title">Channels<i>({Object.keys(this.props.channels).length})</i></p>
           <ScrollArea className="channels-container">
             {
               Object.keys(this.props.channels).map(id => {
@@ -140,7 +140,7 @@ class ChannelSidebar extends React.Component {
             }
           </ScrollArea>
           <Divider />
-          <p className="list-title">Direct Messages <IconButton onTouchTap={this.toggleMessageModal}><AddCircleOutline color={fullWhite}/></IconButton></p>
+          <p className="list-title">Direct Messages<i>({Object.keys(this.props.directMessages).length})</i> <IconButton onTouchTap={this.toggleMessageModal}><AddCircleOutline color={fullWhite}/></IconButton></p>
           <ScrollArea className="channels-container">
             {
               Object.keys(this.props.directMessages).map(id => {
