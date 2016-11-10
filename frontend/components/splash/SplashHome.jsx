@@ -22,6 +22,8 @@ const randomDuration = () => {
   return (Math.random() * 1000) + 3000;
 };
 
+let intervalIds = [];
+
 class SplashHome extends React.Component {
   constructor(props) {
     super(props);
@@ -38,19 +40,26 @@ class SplashHome extends React.Component {
     this.scrollToBottom();
   }
 
+  componentWillUnmount() {
+    intervalIds.forEach(id => {
+      clearInterval(id);
+    });
+  }
+
   startMessageAnimation(count) {
     const duration = count === messageBodies.length ? 750 : randomDuration();
-    setTimeout(() => {
+    const interval = setTimeout(() => {
       if (count === 0) return this.props.toggleActivated();
       let newMessages = this.state.messages.slice();
       const message = generateNextMessage(messageBodies.length - count);
       newMessages.push(message);
       this.setState({messages: newMessages}, this.startMessageAnimation(--count));
     }, duration);
+    intervalIds.push(interval);
   }
 
   scrollToBottom() {
-    window.scrollTo(0, document.body.scrollHeight);
+    scrollTo(0, document.body.scrollHeight);
   }
 
   render() {

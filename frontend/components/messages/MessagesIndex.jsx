@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { pinkA200, fullWhite } from 'material-ui/styles/colors';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import merge from 'lodash/merge';
 
 import MessagesIndexItem from './MessagesIndexItem';
@@ -39,9 +39,7 @@ class MessagesIndex extends React.Component {
   }
 
   handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      this.handleMessageSubmit(e);
-    }
+    if (e.key === 'Enter') this.handleMessageSubmit(e);
   }
 
   handleMessageSubmit(e) {
@@ -62,7 +60,9 @@ class MessagesIndex extends React.Component {
 
   render () {
     let messages = (
-      <h1>loading...</h1>
+      <div className="no-messages">
+        <h2>No messages yet!</h2>
+      </div>
     );
     if (this.props.currentChannel && this.props.messages) {
       const keys = Object.keys(this.props.messages);
@@ -75,12 +75,6 @@ class MessagesIndex extends React.Component {
                               message={this.props.messages[key]} />)
         );
       }
-    } else {
-      messages = (
-        <div className="no-messages">
-          <h2>No messages yet!</h2>
-        </div>
-      );
     }
     const styles = {
       form: {

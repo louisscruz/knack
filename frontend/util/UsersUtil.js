@@ -28,3 +28,13 @@ export const signUp = (user, success, error) => {
     error
   });
 };
+
+export const searchUsers = (value, success) => {
+  $.ajax({
+    url: '/api/users/search',
+    type: 'GET',
+    dataType: 'json',
+    data: { value },
+    success
+  });
+};

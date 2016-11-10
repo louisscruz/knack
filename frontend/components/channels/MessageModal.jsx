@@ -6,6 +6,7 @@ import ChipInput from 'material-ui-chip-input';
 import RaisedButton from 'material-ui/RaisedButton';
 import { withRouter } from 'react-router';
 import { debounce } from 'lodash';
+import { searchUsers } from '../../util/UsersUtil';
 
 class MessageModal extends React.Component {
   constructor(props) {
@@ -69,17 +70,9 @@ class MessageModal extends React.Component {
   }
 
   fetchUsers(value) {
-    const that = this;
-    if (value.length === 0) return;
-    $.ajax({
-      url: 'api/users/search',
-      type: 'GET',
-      dataType: 'json',
-      data: { value },
-      success: function(res) {
-        let usernames = res.map(el => el.username);
-        that.setState({ users: usernames });
-      }
+    searchUsers(value, res => {
+      const usernames = res.map(el => el.username);
+      this.setState({ users: usernames });
     });
   }
 

@@ -24,9 +24,9 @@ class Api::ChannelsController < ApplicationController
     if @channel.nil?
       render json: {}, status: 404
     elsif !@channel.direct_message
-      multiple = [3, 4, 5].sample
+      multiplier = [3, 4, 5].sample
       3.times do |i|
-        offset_start = (i + 1) * multiple
+        offset_start = (i + 1) * multiplier
         AutoMessageJob.set(wait: offset_start.seconds)
                       .perform_later(User.random_superstar, @channel)
       end

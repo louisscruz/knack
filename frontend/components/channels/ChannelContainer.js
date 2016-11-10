@@ -5,11 +5,6 @@ const mapStateToProps = state => ({
   currentUser: state.session.currentUser
 });
 
-const mapDispatchToProps = () => ({
-
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Channels);

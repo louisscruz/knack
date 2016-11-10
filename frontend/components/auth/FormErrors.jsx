@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 
 const FormErrors = ({errors}) => {
   if (errors.length > 0) {
@@ -8,7 +8,7 @@ const FormErrors = ({errors}) => {
   } else {
     return (
       <p></p>
-    )
+    );
   }
 };
 
