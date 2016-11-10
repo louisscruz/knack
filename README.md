@@ -1,6 +1,6 @@
 # Knack
 
-Knack is a messaging application much in the style of Slack.
+[Knack](http://knack.live) is a messaging application much in the style of Slack.
 
 ## Features & Implementation
 
