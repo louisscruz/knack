@@ -33,19 +33,13 @@ header::before {
 
 .message-enter {
   opacity: 0.01;
-  -webkit-box-shadow: 0px 0px 75px 14px rgba(0,0,0,0.5);
-  -moz-box-shadow: 0px 0px 75px 14px rgba(0,0,0,0.5);
-  box-shadow: 0px 0px 75px 14px rgba(0,0,0,0.5);
-  color: white !important;
   background-color: $primary !important;
 }
 
 .message-enter.message-enter-active {
   opacity: 1;
-  -webkit-box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.5);
-  -moz-box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.5);
-  box-shadow: 0px 0px 75px -20px rgba(0,0,0,0.5);
-  transition: all 500ms ease-in-out;
+  // background-color: white !important;
+  transition: opacity 500ms cubic-bezier(.81,.01,.8,.97);
 }
 
 .message-leave {
@@ -54,5 +48,5 @@ header::before {
 
 .message-leave.message-leave-active {
   opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  transition: opacity 300ms cubic-bezier(.81,.01,.8,.97);
 }

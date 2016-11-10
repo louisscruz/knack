@@ -41,13 +41,10 @@
 }
 
 .no-messages {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   height: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   text-align: center;
-  color: #6f6f6f;
-  // h2 {
-  //   margin: 36px;
-  // }
+  border-radius: 2px;
+  color: #424242;
 }

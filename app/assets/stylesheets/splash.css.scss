@@ -5,13 +5,9 @@
   header {
     position: fixed;
     width: 100%;
-    h1 {
-      // cursor: pointer;
-    }
   }
   main {
     flex: 1;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff4081+1,1a237e+100 */
     background: #ff4081;
     background: -moz-linear-gradient(-45deg,  #ff4081 1%, #1a237e 100%);
     background: -webkit-linear-gradient(-45deg,  #ff4081 1%,#1a237e 100%);
