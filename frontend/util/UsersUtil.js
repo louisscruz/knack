@@ -38,3 +38,13 @@ export const searchUsers = (value, success) => {
     success
   });
 };
+
+export const usernameValidation = (value, success) => {
+  $.ajax({
+    url: '/api/users/username-validation',
+    type: 'GET',
+    dataType: 'json',
+    data: { value },
+    success
+  });
+};

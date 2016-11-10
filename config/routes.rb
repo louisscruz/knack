@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :channels, only: [:index, :create, :show, :destroy], param: :name
     resources :messages, only: [:create, :update, :destroy]
     get '/users/search', to: 'users#search'
+    get '/users/username-validation', to: 'users#username_validation'
   end
 
 

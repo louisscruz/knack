@@ -12,6 +12,15 @@ class Api::UsersController < ApplicationController
     @users = User.where('username LIKE ?', "%#{params[:value]}%").limit(10)
   end
 
+  def username_validation
+    @user = User.find_by(username: params[:value])
+    if @user.nil?
+      render json: { taken: false }
+    else
+      render json: { taken: true }
+    end
+  end
+
   private
 
   def user_params

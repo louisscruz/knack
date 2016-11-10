@@ -4,7 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { Link, withRouter } from 'react-router';
-import merge from 'lodash/merge';
+import { merge, debounce} from 'lodash';
+import { usernameValidation } from '../../util/UsersUtil';
 import { formInvalid, getErrors, setErrors, setTouched } from './FormErrors';
 
 const Subtitle = () => (
@@ -22,6 +23,10 @@ class SignUp extends React.Component {
           required: {
             present: true,
             message: 'Username is required'
+          },
+          available: {
+            present: true,
+            message: 'Username is taken'
           }
         }
       },
@@ -31,7 +36,7 @@ class SignUp extends React.Component {
         errors: {
           required: {
             present: true,
-            message: 'Email is required.'
+            message: 'Email is required'
           },
           format: {
             present: true,
@@ -45,7 +50,7 @@ class SignUp extends React.Component {
         errors: {
           required: {
             present: true,
-            message: 'Password is required.'
+            message: 'Password is required'
           },
           minlength: {
             present: true,
@@ -59,7 +64,7 @@ class SignUp extends React.Component {
         errors: {
           required: {
             present: true,
-            message: 'Password confirmation is required.'
+            message: 'Password confirmation is required'
           },
           unequal: {
             present: false,
@@ -70,8 +75,8 @@ class SignUp extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleGuestLogin = this.handleGuestLogin.bind(this);
+    this.handleUsernameLookup = debounce(this.handleUsernameLookup, 200);
   }
-
 
   componentDidUpdate() {
     this.redirectIfLoggedIn();
@@ -111,7 +116,37 @@ class SignUp extends React.Component {
     this.props.login(user);
   }
 
-  render () {
+  validateUsername() {
+    return e => {
+      let newState = merge({}, this.state);
+      newState.username.value = e.target.value;
+      this.setState(newState, () => {
+        // usernameValidation(this.state.username.value, res => {
+        //   if (res.taken) {
+        //     newState.username.errors.available.present = true;
+        //   } else {
+        //     newState.username.errors.available.present = false;
+        //   }
+        //   this.setState(newState, () => setErrors.call(this, 'username'));
+        // });
+        this.handleUsernameLookup();
+      });
+    };
+  }
+
+  handleUsernameLookup() {
+    let newState = merge({}, this.state);
+    usernameValidation(this.state.username.value, res => {
+      if (res.taken) {
+        newState.username.errors.available.present = true;
+      } else {
+        newState.username.errors.available.present = false;
+      }
+      this.setState(newState, () => setErrors.call(this, 'username'));
+    });
+  }
+
+  render() {
     return (
       <Card className="auth" zDepth={5}>
         <form onSubmit={this.handleSubmit}>
@@ -127,7 +162,7 @@ class SignUp extends React.Component {
               floatingLabelText="Username"
               fullWidth={true}
               errorText={getErrors.call(this, 'username')}
-              onChange={this.update('username')}
+              onChange={this.validateUsername()}
               onBlur={setTouched.call(this, 'username')}
               />
             <TextField

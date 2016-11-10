@@ -23,7 +23,7 @@ class SignIn extends React.Component {
         errors: {
           required: {
             present: true,
-            message: 'Email is required.'
+            message: 'Email is required'
           }
         }
       },
@@ -33,7 +33,7 @@ class SignIn extends React.Component {
         errors: {
           required: {
             present: true,
-            message: 'Password is required.'
+            message: 'Password is required'
           }
         }
       }
