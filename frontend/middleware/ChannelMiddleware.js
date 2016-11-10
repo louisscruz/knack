@@ -4,6 +4,7 @@ import {
   FETCH_CHANNEL,
   POST_CHANNEL,
   POST_DIRECT_MESSAGE,
+  RECEIVE_DIRECT_MESSAGE,
   receiveChannels,
   receiveDirectMessages,
   receiveDirectMessage,
@@ -27,7 +28,7 @@ export default ({ dispatch }) => next => action => {
   const fetchDirectMessagesSuccess = channels => dispatch(receiveDirectMessages(channels));
   const fetchChannelSuccess = channel => dispatch(receiveChannel(channel));
   const postChannelSuccess = channel => dispatch(receiveChannel(channel));
-  const postDirectMessageSuccess = channel => dispatch(receiveDirectMessage(channel));
+  const postDirectMessageSuccess = channel => dispatch(receiveDirectMessage(channel, action.success));
   const postMessageSuccess = message => dispatch(receiveMessage(message));
   switch(action.type) {
     case FETCH_CHANNELS:
@@ -47,6 +48,9 @@ export default ({ dispatch }) => next => action => {
       return next(action);
     case POST_MESSAGE:
       postMessage(action.message, postMessageSuccess);
+      return next(action);
+    case RECEIVE_DIRECT_MESSAGE:
+      action.success();
       return next(action);
     default:
       return next(action);

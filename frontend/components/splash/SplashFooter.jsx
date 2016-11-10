@@ -1,6 +1,5 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import Paper from 'material-ui/Paper';
-import { List, ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import { grey800 } from 'material-ui/styles/colors';

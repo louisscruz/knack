@@ -26,9 +26,10 @@ export const postChannel = channel => ({
   channel
 });
 
-export const postDirectMessage = channel => ({
+export const postDirectMessage = (channel, success) => ({
   type: POST_DIRECT_MESSAGE,
-  channel
+  channel,
+  success
 });
 
 export const receiveChannels = channels => ({
@@ -46,7 +47,8 @@ export const receiveChannel = channel => ({
   channel
 });
 
-export const receiveDirectMessage = channel => ({
+export const receiveDirectMessage = (channel, success) => ({
   type: RECEIVE_DIRECT_MESSAGE,
-  channel
+  channel,
+  success
 });

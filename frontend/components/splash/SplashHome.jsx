@@ -1,5 +1,6 @@
 import React from 'react';
 import MessagesIndexItem from '../messages/MessagesIndexItem';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const messageBodies = [
   'Hey there!',
@@ -68,12 +69,17 @@ class SplashHome extends React.Component {
     };
     return (
       <div>
-        {this.state.messages.map((el, idx) => (
-          <MessagesIndexItem
-            key={idx}
-            message={this.state.messages[idx]}
-            currentUser={currentUser} />
-        ))}
+        <ReactCSSTransitionGroup
+          transitionName="message"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {this.state.messages.map((el, idx) => (
+            <MessagesIndexItem
+              key={idx}
+              message={this.state.messages[idx]}
+              currentUser={currentUser} />
+          ))}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

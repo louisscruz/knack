@@ -59,11 +59,7 @@ class MessagesIndex extends React.Component {
   }
 
   render () {
-    let messages = (
-      <div className="no-messages">
-        <h2>No messages yet!</h2>
-      </div>
-    );
+    let messages;
     if (this.props.currentChannel && this.props.messages) {
       const keys = Object.keys(this.props.messages);
       if (keys.length > 0) {
@@ -75,6 +71,12 @@ class MessagesIndex extends React.Component {
                               message={this.props.messages[key]} />)
         );
       }
+    } else {
+      messages = (
+        <div className="no-messages">
+          <h2>No messages yet!</h2>
+        </div>
+      );
     }
     const styles = {
       form: {
@@ -91,7 +93,7 @@ class MessagesIndex extends React.Component {
           ref="channelMessages">
           <div className="padder">
             <ReactCSSTransitionGroup
-              transitionName="example"
+              transitionName="message"
               transitionEnterTimeout={500}
               transitionLeaveTimeout={300}>
               {messages}

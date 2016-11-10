@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  postDirectMessage: channel => dispatch(postDirectMessage(channel))
+  postDirectMessage: (channel, success) => dispatch(postDirectMessage(channel, success))
 });
 
 export default connect(

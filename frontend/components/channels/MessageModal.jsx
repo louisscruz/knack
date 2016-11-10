@@ -60,7 +60,7 @@ class MessageModal extends React.Component {
       creator_id: this.props.currentUser.id,
       members: this.state.members
     };
-    this.props.postDirectMessage(channel);
+    this.props.postDirectMessage(channel, () => this.routeToChannel(name));
     this.props.closeModal();
     this.setState({members: []});
   }
