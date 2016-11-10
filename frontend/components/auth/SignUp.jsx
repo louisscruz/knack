@@ -121,14 +121,6 @@ class SignUp extends React.Component {
       let newState = merge({}, this.state);
       newState.username.value = e.target.value;
       this.setState(newState, () => {
-        // usernameValidation(this.state.username.value, res => {
-        //   if (res.taken) {
-        //     newState.username.errors.available.present = true;
-        //   } else {
-        //     newState.username.errors.available.present = false;
-        //   }
-        //   this.setState(newState, () => setErrors.call(this, 'username'));
-        // });
         this.handleUsernameLookup();
       });
     };
