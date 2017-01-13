@@ -38,7 +38,7 @@ class Root extends React.Component {
       }
       this.requestDirectMessages();
       this.requestChannel(nextState.params.channelName);
-      // this.setSocket(nextState.params.channelName);
+      this.setSocket(nextState.params.channelName);
     }
   }
 
