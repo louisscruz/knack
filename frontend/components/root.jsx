@@ -38,7 +38,7 @@ class Root extends React.Component {
       }
       this.requestDirectMessages();
       this.requestChannel(nextState.params.channelName);
-      this.setSocket(nextState.params.channelName);
+      // this.setSocket(nextState.params.channelName);
     }
   }
 
@@ -66,15 +66,14 @@ class Root extends React.Component {
   }
 
   addSocket(channelName) {
-    const that = this;
     window.App.channel = window.App.cable.subscriptions.create({
       channel: 'ChannelChannel',
       channel_name: channelName
     }, {
-      connected: function() {},
-      disconnected: function() {},
-      received: function(data) {
-        that.props.store.dispatch(receiveMessage(data.message));
+      connected: () => {},
+      disconnected: () => {},
+      received: (data) => {
+        this.props.store.dispatch(receiveMessage(data.message));
       }
     });
   }
