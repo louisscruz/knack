@@ -1,6 +1,6 @@
 class Api::ChannelsController < ApplicationController
-  before_action :set_channel, only: [:show, :destroy]
   before_action :authorized_only
+  before_action :set_channel, only: [:show, :destroy]
 
   def index
     if params[:direct_message]
@@ -22,7 +22,7 @@ class Api::ChannelsController < ApplicationController
 
   def show
     if @channel.nil?
-      render json: {}, status: 404
+      head 404
     elsif !@channel.direct_message
       multiplier = [3, 4, 5].sample
       3.times do |i|
@@ -44,7 +44,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def set_channel
-    @channel = Channel.includes(:messages, messages: :author)
+    @channel = Channel.includes(messages: :author)
                       .find_by(name: params[:name])
   end
 

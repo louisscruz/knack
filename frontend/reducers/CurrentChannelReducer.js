@@ -12,6 +12,7 @@ export default (state = {}, action) => {
       if (!newState.messages) {
         newState.messages = {};
       }
+      console.log('receiving', action.message);
       newState.messages[action.message.id] = action.message;
       return newState;
     default:
