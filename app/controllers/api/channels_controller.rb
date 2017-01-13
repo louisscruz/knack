@@ -27,8 +27,8 @@ class Api::ChannelsController < ApplicationController
       multiplier = [3, 4, 5].sample
       3.times do |i|
         offset_start = (i + 1) * multiplier
-        AutoMessageJob.set(wait: offset_start.seconds)
-                      .perform_later(User.random_superstar, @channel)
+        # AutoMessageJob.set(wait: offset_start.seconds)
+        #               .perform_later(User.random_superstar, @channel)
       end
     end
   end

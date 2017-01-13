@@ -12,8 +12,8 @@
 #
 
 class Message < ApplicationRecord
-  after_commit { MessageRelayJob.perform_later(self, self.channel) }
-  after_save :handle_random_message
+  # after_commit { MessageRelayJob.perform_later(self, self.channel) }
+  # after_save :handle_random_message
   validates :body, :author_id, :channel_id, presence: true
   scope :recent, -> { order('id DESC').limit(20) }
 

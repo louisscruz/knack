@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -55,7 +54,7 @@ class MessagesIndex extends React.Component {
 
   scrollToBottom() {
     const height = this.refs.channelMessages.scrollHeight;
-    ReactDOM.findDOMNode(this.refs.channelMessages).scrollTop = height;
+    this.refs.channelMessages.scrollTop = height;
   }
 
   render () {
