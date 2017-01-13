@@ -74,8 +74,6 @@ class Root extends React.Component {
       connected: function() {},
       disconnected: function() {},
       received: function(data) {
-        console.log('working');
-        console.log(data);
         that.props.store.dispatch(receiveMessage(data.message));
       }
     });
